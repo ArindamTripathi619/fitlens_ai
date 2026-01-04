@@ -87,12 +87,12 @@
                 </p>
 </div>
 <!-- Form Container -->
-<div class="flex flex-col gap-5">
+<form class="flex flex-col gap-5" id="signup-form">
 <!-- Name Input -->
 <div class="space-y-1.5">
-<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider">Full Name</label>
+<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider" for="full-name">Full Name</label>
 <div class="relative">
-<input class="w-full h-14 bg-input-bg border-transparent focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" placeholder="e.g. Rahul Sharma" type="text"/>
+<input class="w-full h-14 bg-input-bg border-transparent focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" id="full-name" placeholder="e.g. Rahul Sharma" type="text"/>
 <span class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500">
 <span class="material-symbols-outlined text-[20px]">person</span>
 </span>
@@ -100,9 +100,9 @@
 </div>
 <!-- Email Input -->
 <div class="space-y-1.5">
-<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider">Email or Phone</label>
+<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider" for="email">Email or Phone</label>
 <div class="relative group">
-<input class="w-full h-14 bg-input-bg border-transparent focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" placeholder="name@university.edu" type="email" value="priya.design@"/>
+<input class="w-full h-14 bg-input-bg border-transparent focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" id="email" placeholder="name@university.edu" type="email"/>
 <!-- Field Level Validation Example: Checking/Typing -->
 <span class="absolute right-5 top-1/2 -translate-y-1/2 text-primary animate-pulse">
 <span class="material-symbols-outlined text-[20px]">sync</span>
@@ -111,10 +111,10 @@
 </div>
 <!-- Password Input -->
 <div class="space-y-1.5">
-<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider">Password</label>
+<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider" for="password">Password</label>
 <div class="relative">
-<input class="w-full h-14 bg-input-bg border-2 border-primary/50 focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" type="password" value="StrongPass123"/>
-<button class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+<input class="w-full h-14 bg-input-bg border-2 border-primary/50 focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" id="password" type="password"/>
+<button class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white" type="button">
 <span class="material-symbols-outlined text-[20px]">visibility_off</span>
 </button>
 </div>
@@ -129,22 +129,22 @@
 </div>
 <!-- Confirm Password Input -->
 <div class="space-y-1.5">
-<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider">Confirm Password</label>
+<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider" for="confirm-password">Confirm Password</label>
 <div class="relative">
-<input class="w-full h-14 bg-input-bg border-transparent focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" placeholder="Re-enter password" type="password"/>
+<input class="w-full h-14 bg-input-bg border-transparent focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" id="confirm-password" placeholder="Re-enter password" type="password"/>
 <span class="absolute right-5 top-1/2 -translate-y-1/2 text-green-500">
 <!-- Validation Success State -->
 <span class="material-symbols-outlined text-[20px]">check_circle</span>
 </span>
 </div>
 </div>
-</div>
 <div class="mt-8 mb-4">
-<button class="w-full h-14 bg-primary hover:bg-primary/90 active:scale-[0.98] transition-all rounded-full text-white font-semibold text-base shadow-lg shadow-primary/25 flex items-center justify-center gap-2">
+<button class="w-full h-14 bg-primary hover:bg-primary/90 active:scale-[0.98] transition-all rounded-full text-white font-semibold text-base shadow-lg shadow-primary/25 flex items-center justify-center gap-2" type="submit">
                     Create Account
                     <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
 </button>
 </div>
+</form>
 <!-- Login Instead -->
 <div class="text-center mb-6">
 <p class="text-sm text-gray-400">
@@ -172,4 +172,7 @@
 <div class="h-6"></div>
 </div>
 </div>
+<!-- Scripts -->
+<script src="../js/config.js"></script>
+<script src="../js/signup.js"></script>
 </body></html>
