@@ -1,0 +1,4 @@
+const API_CONFIG = {
+  API_BASE_URL: '/api',
+  OPENROUTER_API_KEY: 'YOUR_OPENROUTER_API_KEY_HERE' // Placeholder
+};
