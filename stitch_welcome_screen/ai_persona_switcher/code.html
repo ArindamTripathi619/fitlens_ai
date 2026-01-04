@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Persona Switcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#25c0f4",
+              "primary-diet": "#25f4a3",
+              "primary-mot": "#8b5cf6",
+              "background-light": "#f5f8f8",
+              "background-dark": "#101e22",
+              "surface-dark": "#18282e",
+              "bubble-ai": "#1f3138",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Custom radio logic for visual styling */
+        input[type="radio"]:checked + div {
+            background-color: #25c0f4; /* Default primary */
+            color: #101e22;
+        }
+        /* Color variations based on active tab concept */
+        #tab-diet:checked + div {
+            background-color: #25f4a3;
+        }
+        #tab-mot:checked + div {
+            background-color: #8b5cf6;
+            color: #ffffff;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased overflow-hidden h-screen flex flex-col relative text-slate-900 dark:text-white selection:bg-primary selection:text-background-dark">
+<!-- Top App Bar -->
+<header class="flex items-center px-4 py-3 justify-between bg-surface-dark/50 backdrop-blur-md sticky top-0 z-20 border-b border-white/5">
+<div class="flex items-center justify-center size-10 rounded-full bg-white/5 cursor-pointer hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white" style="font-size: 20px;">arrow_back</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-white text-lg font-bold leading-tight">FitBot AI</h2>
+<div class="flex items-center gap-1">
+<div class="size-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-xs text-primary font-medium tracking-wide uppercase">Trainer Mode</span>
+</div>
+</div>
+<div class="flex items-center justify-center size-10 rounded-full bg-white/5 cursor-pointer hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white" style="font-size: 20px;">settings</span>
+</div>
+</header>
+<!-- Persona Switcher (Segmented Buttons) -->
+<div class="px-4 py-4 w-full z-10 bg-background-dark/95 backdrop-blur-sm">
+<div class="flex h-12 w-full items-center rounded-full bg-surface-dark p-1 border border-white/5 shadow-inner">
+<!-- Trainer Tab -->
+<label class="relative flex-1 cursor-pointer h-full">
+<input checked="" class="peer sr-only" id="tab-train" name="persona" type="radio"/>
+<div class="flex h-full w-full items-center justify-center gap-2 rounded-full text-slate-400 transition-all duration-300 ease-out hover:text-white">
+<span class="material-symbols-outlined" style="font-size: 20px;">fitness_center</span>
+<span class="text-sm font-bold hidden min-[350px]:inline">Trainer</span>
+</div>
+</label>
+<!-- Dietician Tab -->
+<label class="relative flex-1 cursor-pointer h-full">
+<input class="peer sr-only" id="tab-diet" name="persona" type="radio"/>
+<div class="flex h-full w-full items-center justify-center gap-2 rounded-full text-slate-400 transition-all duration-300 ease-out hover:text-white">
+<span class="material-symbols-outlined" style="font-size: 20px;">nutrition</span>
+<span class="text-sm font-bold hidden min-[350px]:inline">Dietician</span>
+</div>
+</label>
+<!-- Motivator Tab -->
+<label class="relative flex-1 cursor-pointer h-full">
+<input class="peer sr-only" id="tab-mot" name="persona" type="radio"/>
+<div class="flex h-full w-full items-center justify-center gap-2 rounded-full text-slate-400 transition-all duration-300 ease-out hover:text-white">
+<span class="material-symbols-outlined" style="font-size: 20px;">bolt</span>
+<span class="text-sm font-bold hidden min-[350px]:inline">Motivator</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Chat Area -->
+<main class="flex-1 overflow-y-auto px-4 pb-4 space-y-6 hide-scrollbar scroll-smooth">
+<!-- Date Divider -->
+<div class="flex justify-center my-4">
+<span class="text-xs font-medium text-slate-500 bg-surface-dark px-3 py-1 rounded-full border border-white/5">Today, 9:41 AM</span>
+</div>
+<!-- AI Message (Welcome) -->
+<div class="flex items-end gap-3 w-full">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8 shrink-0 border border-primary/30 shadow-[0_0_10px_rgba(37,192,244,0.3)]" data-alt="Robot avatar face" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB8ALP_EytIgsI-2517eqH7BHg973laT44cZdA-MWVF7H7CizZL3xqMBnDS8j0n5HxtRJLngteII4C3EB-dwnuVoHdQeaaGyuahGyPE8FHG8E1e0Dsq_phKvWaUik6vt3_scWyH938MwwMDD_Kgy4QpIpg3fMkhVpknGMBbcgmy75G-IEeMtEE4tQEp8DQQbbiWaJPokey_BLBeIgrIkljZXKvnw2nMzifeFL9zVBKx6vCFT4TkypykiGPK34rfkIeZIyPUGbsO2XU");'></div>
+<div class="flex flex-col gap-1 items-start max-w-[80%]">
+<span class="text-primary text-[11px] font-medium ml-1">FitBot</span>
+<div class="rounded-2xl rounded-bl-sm px-4 py-3 bg-bubble-ai text-slate-100 border border-white/5 shadow-sm">
+<p class="text-sm leading-relaxed">Good morning! Ready to crush your goals today? Are we focusing on strength or cardio?</p>
+</div>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex items-end gap-3 w-full justify-end">
+<div class="flex flex-col gap-1 items-end max-w-[80%]">
+<div class="rounded-2xl rounded-br-sm px-4 py-3 bg-primary text-background-dark shadow-md shadow-primary/10">
+<p class="text-sm font-medium leading-relaxed">I only have 20 minutes today. Can we make it quick?</p>
+</div>
+<span class="text-slate-500 text-[10px] mr-1">Read 9:43 AM</span>
+</div>
+</div>
+<!-- AI Message (Response) -->
+<div class="flex items-end gap-3 w-full">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8 shrink-0 border border-primary/30 shadow-[0_0_10px_rgba(37,192,244,0.3)]" data-alt="Robot avatar face" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCL9KvmnsaJkrbT0EMYDanrQxOAQUmn2jpCPeYD713uanxo0MN6U3bW2EH87IiPTHf900S7W2SSaSDJaWp0maE3K3tEjzxWm0foD7yHguS_SzOheAcdWZbfdQosRw1QpY2ZVJ20T1iSRGkcadBhUClsyML5xM2afWkQl2kKk0-KX5q__xzyoC-wT_7N8vagg_DpUh1IOePBgPJxDlRD-jJAZcdCPy_FqWhzNJIhivBHLEGjAQkmQq9H0GNKgUrrOU00xY2zJbdNHG8");'></div>
+<div class="flex flex-col gap-1 items-start max-w-[85%]">
+<span class="text-primary text-[11px] font-medium ml-1">FitBot</span>
+<div class="rounded-2xl rounded-tl-2xl rounded-bl-sm px-4 py-3 bg-bubble-ai text-slate-100 border border-white/5 shadow-sm">
+<p class="text-sm leading-relaxed">No problem! Let's do a HIIT session. 30s high knees, 30s rest. 4 rounds.</p>
+</div>
+<div class="mt-1 flex gap-2">
+<div class="rounded-2xl rounded-bl-2xl rounded-tl-sm px-4 py-3 bg-bubble-ai text-slate-100 border border-white/5 shadow-sm w-full">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">timer</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">HIIT Quickie</p>
+<p class="text-xs text-slate-400">20 mins • High Intensity</p>
+</div>
+<button class="ml-auto bg-primary text-background-dark text-xs font-bold px-3 py-1.5 rounded-full hover:brightness-110">Start</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer for bottom input area -->
+<div class="h-24"></div>
+</main>
+<!-- Bottom Action Area -->
+<footer class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-background-dark via-background-dark to-transparent pt-10 pb-4 px-4 z-20">
+<!-- Suggestion Chips -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar mb-3 px-1">
+<button class="flex-shrink-0 bg-surface-dark border border-white/10 hover:border-primary/50 text-slate-300 hover:text-white px-3 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">add_circle</span> Log Pushups
+            </button>
+<button class="flex-shrink-0 bg-surface-dark border border-white/10 hover:border-primary/50 text-slate-300 hover:text-white px-3 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">fitness_center</span> Generate Plan
+            </button>
+<button class="flex-shrink-0 bg-surface-dark border border-white/10 hover:border-primary/50 text-slate-300 hover:text-white px-3 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">restaurant</span> Switch to Diet
+            </button>
+</div>
+<!-- Input Field -->
+<div class="flex items-end gap-2 bg-surface-dark border border-white/10 rounded-[2rem] p-2 shadow-lg">
+<button class="size-10 flex items-center justify-center rounded-full text-slate-400 hover:text-primary hover:bg-white/5 transition-colors flex-shrink-0">
+<span class="material-symbols-outlined">add</span>
+</button>
+<textarea class="w-full bg-transparent border-0 text-white placeholder-slate-500 focus:ring-0 resize-none py-2.5 max-h-32 text-sm leading-relaxed hide-scrollbar" placeholder="Ask about workouts..." rows="1"></textarea>
+<button class="size-10 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-white/5 transition-colors flex-shrink-0">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-full bg-primary text-background-dark hover:brightness-110 transition-all shadow-[0_0_15px_rgba(37,192,244,0.4)] flex-shrink-0">
+<span class="material-symbols-outlined font-bold">arrow_upward</span>
+</button>
+</div>
+<div class="h-1 w-full flex justify-center mt-3">
+<div class="h-1 w-1/3 bg-white/20 rounded-full"></div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Food Recognition Results</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#25c0f4",
+              "background-light": "#f5f8f8",
+              "background-dark": "#101e22",
+              "card-dark": "#18282e",
+              "macro-protein": "#25c0f4",
+              "macro-carbs": "#fbbf24",
+              "macro-fats": "#ef4444",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "2.5rem", "full": "9999px"},
+            animation: {
+                'scan': 'scan 3s ease-in-out infinite',
+                'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+                scan: {
+                    '0%': { top: '0%', opacity: '0' },
+                    '10%': { opacity: '1' },
+                    '90%': { opacity: '1' },
+                    '100%': { top: '100%', opacity: '0' },
+                },
+                'pulse-glow': {
+                    '0%, 100%': { opacity: '1', boxShadow: '0 0 15px rgba(37, 192, 244, 0.5)' },
+                    '50%': { opacity: '.8', boxShadow: '0 0 5px rgba(37, 192, 244, 0.2)' },
+                }
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Hide scrollbar for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased selection:bg-primary/30 selection:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Top Navigation (Absolute Overlay) -->
+<div class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 max-w-md mx-auto pt-12 md:pt-4 bg-gradient-to-b from-black/80 to-transparent">
+<button class="text-white flex size-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+</button>
+<h2 class="text-white text-base font-semibold tracking-wide opacity-0">Results</h2> <!-- Hidden title for layout balance -->
+<button class="flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md px-4 py-2 hover:bg-white/20 transition-colors">
+<p class="text-white text-sm font-bold tracking-wide">Edit</p>
+</button>
+</div>
+<!-- Hero Image Section with AI Overlay -->
+<div class="relative w-full h-[55vh] shrink-0">
+<!-- Main Image -->
+<div class="w-full h-full bg-center bg-cover bg-no-repeat" data-alt="Top down view of an indian thali meal with paneer curry, naan bread and salad" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBawcGKLERD03EyXMx8AY18m9DYkAT1pkogisZbNpR-_G879urg66uHlbRN-YB64w9LcFr7vqVbC2Q5BpQc0t1kwEjkyDOpHsXSmOg-vUFWWGBe2SzrB5dQZfb4xvTZt6kDIVWldeGW-eN4sBRTCAPWUmWjmBWlftJ611G-H4I422Qa58fjOpAEBh8XRkKwo5yD_jKlZNC9i9nwRa3hn0Nt53MowPHiSdMjjgXiExAPNXSH48IaRg-jN5zrPqUgH7-ZYgHaUckgYtQ');">
+<div class="absolute inset-0 bg-black/20"></div>
+</div>
+<!-- Scanning Animation Overlay -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden rounded-b-3xl">
+<div class="absolute left-0 w-full h-1 bg-primary shadow-[0_0_20px_#25c0f4] animate-scan z-20"></div>
+<div class="absolute left-0 w-full h-24 bg-gradient-to-b from-primary/20 to-transparent animate-scan z-10 -translate-y-full"></div>
+</div>
+<!-- Bounding Boxes & Labels -->
+<!-- Item 1: Paneer -->
+<div class="absolute top-[35%] left-[25%] w-[35%] h-[30%] border-2 border-primary rounded-xl shadow-[0_0_15px_rgba(37,192,244,0.4)] animate-pulse-glow group cursor-pointer transition-all hover:scale-105 active:scale-95">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-background-dark text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap shadow-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">restaurant</span>
+                    Paneer Tikka
+                </div>
+<!-- Detail Dot -->
+<div class="absolute -bottom-1 -right-1 size-3 bg-white rounded-full shadow-sm animate-bounce"></div>
+</div>
+<!-- Item 2: Naan -->
+<div class="absolute top-[20%] right-[10%] w-[30%] h-[25%] border-2 border-primary/60 rounded-xl shadow-[0_0_10px_rgba(37,192,244,0.2)] group cursor-pointer transition-all hover:scale-105 active:scale-95">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-card-dark/90 backdrop-blur border border-primary/30 text-white text-xs font-medium px-3 py-1 rounded-full whitespace-nowrap shadow-lg">
+                    Garlic Naan
+                </div>
+</div>
+<!-- Item 3: Salad -->
+<div class="absolute bottom-[20%] left-[15%] w-[25%] h-[20%] border-2 border-primary/60 rounded-xl shadow-[0_0_10px_rgba(37,192,244,0.2)] group cursor-pointer transition-all hover:scale-105 active:scale-95">
+<div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-card-dark/90 backdrop-blur border border-primary/30 text-white text-xs font-medium px-3 py-1 rounded-full whitespace-nowrap shadow-lg">
+                    Green Salad
+                </div>
+</div>
+</div>
+<!-- Content Sheet -->
+<div class="relative -mt-8 bg-background-light dark:bg-background-dark rounded-t-3xl z-30 flex-1 px-6 pt-2 pb-28 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+<!-- Drag Handle -->
+<div class="w-12 h-1.5 bg-gray-300 dark:bg-gray-700 rounded-full mx-auto mt-4 mb-6"></div>
+<!-- Match Confidence -->
+<div class="flex justify-center mb-4">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20">
+<span class="material-symbols-outlined text-green-500 text-[16px]">check_circle</span>
+<span class="text-green-600 dark:text-green-400 text-xs font-bold uppercase tracking-wider">98% Confidence</span>
+</div>
+</div>
+<!-- Total Calories Headline -->
+<div class="text-center mb-8">
+<h1 class="text-gray-900 dark:text-white text-4xl font-bold tracking-tight mb-1">
+                    640 <span class="text-lg font-medium text-gray-500 dark:text-gray-400">Kcal</span>
+</h1>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Dinner • 78% of daily goal</p>
+</div>
+<!-- Macro Cards Row -->
+<div class="grid grid-cols-3 gap-3 mb-8">
+<!-- Protein Card -->
+<div class="bg-card-dark rounded-2xl p-3 flex flex-col items-center justify-center relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-1 opacity-20">
+<span class="material-symbols-outlined text-macro-protein text-4xl">fitness_center</span>
+</div>
+<div class="text-macro-protein text-2xl font-bold mb-0.5">24g</div>
+<div class="text-gray-400 text-xs font-medium uppercase tracking-wider">Protein</div>
+<div class="w-full h-1 bg-gray-700 rounded-full mt-3 overflow-hidden">
+<div class="h-full bg-macro-protein w-[60%] rounded-full"></div>
+</div>
+</div>
+<!-- Carbs Card -->
+<div class="bg-card-dark rounded-2xl p-3 flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-1 opacity-20">
+<span class="material-symbols-outlined text-macro-carbs text-4xl">bakery_dining</span>
+</div>
+<div class="text-macro-carbs text-2xl font-bold mb-0.5">80g</div>
+<div class="text-gray-400 text-xs font-medium uppercase tracking-wider">Carbs</div>
+<div class="w-full h-1 bg-gray-700 rounded-full mt-3 overflow-hidden">
+<div class="h-full bg-macro-carbs w-[85%] rounded-full"></div>
+</div>
+</div>
+<!-- Fats Card -->
+<div class="bg-card-dark rounded-2xl p-3 flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-1 opacity-20">
+<span class="material-symbols-outlined text-macro-fats text-4xl">water_drop</span>
+</div>
+<div class="text-macro-fats text-2xl font-bold mb-0.5">18g</div>
+<div class="text-gray-400 text-xs font-medium uppercase tracking-wider">Fats</div>
+<div class="w-full h-1 bg-gray-700 rounded-full mt-3 overflow-hidden">
+<div class="h-full bg-macro-fats w-[40%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- AI Insight / Feedback -->
+<div class="bg-primary/10 border border-primary/20 rounded-2xl p-4 flex items-start gap-3 mb-6">
+<div class="bg-primary/20 p-1.5 rounded-lg shrink-0 text-primary">
+<span class="material-symbols-outlined text-xl">auto_awesome</span>
+</div>
+<div>
+<h4 class="text-white text-sm font-bold mb-1">AI Insight</h4>
+<p class="text-gray-400 text-xs leading-relaxed">
+                        Great protein source! The <span class="text-white">Paneer Tikka</span> is nutrient-dense. Consider skipping one Naan to reduce carb intake for dinner.
+                    </p>
+</div>
+</div>
+<!-- Detailed List (Preview) -->
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-gray-700 bg-cover bg-center" data-alt="Close up of paneer curry" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDrW5J1XJZxji32mSNaLOpNtupwzTPrs6SAQkxG5ZI2Sr8jdGccnevp9_ZGySxdC0YL-l8qdk7SFKPchIuutrX_oeWqeNydNCr-Iost7d5NU3JwaMzejT_nveybGhbex90CwHVxowjwkxw55LzJMm7A7T6QDsxs0XvzlS4Mw9asPGeQBfaF5tC5ulo8PbZvujAxHGYufxBYv3lNX_PaUpUPb-87B2PDGl_oQQ8KSqvG8hP3uD8afOoPdeoSZ7ttzsKag6lsrUxMAQ');"></div>
+<div>
+<p class="text-white text-sm font-medium">Paneer Tikka</p>
+<p class="text-gray-500 text-xs">1 Serving (200g)</p>
+</div>
+</div>
+<p class="text-white text-sm font-bold">320 kcal</p>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-gray-700 bg-cover bg-center" data-alt="Close up of naan bread" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAC_PPxaCVgWhVtVSZQbya-j3GECilVyIAoDwyRAhTSjRd43W5Nwy2yydlxcZVS3obpJrn9JOgKQnMl7DsOe75g0mGtNvBrN8LIgvtKC8BF5VjrPdTxaoKtvjNomP3ajJbu8EcDzx9gqPBvgIIsz679bQh49WUhXauJqS7PYbT6Wi4mKXJxxNs1FaUNfhHPIToagQL2yn7OZjkl69jH1q179JO5qg5hdC_udp8ScSnS3kIppMVdwxUszPp55e2BlVkk3LJ9PSfJL20');"></div>
+<div>
+<p class="text-white text-sm font-medium">Garlic Naan</p>
+<p class="text-gray-500 text-xs">2 Pieces</p>
+</div>
+</div>
+<p class="text-white text-sm font-bold">280 kcal</p>
+</div>
+</div>
+</div>
+<!-- Floating Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-50 p-6 bg-gradient-to-t from-background-dark via-background-dark to-transparent pt-12 max-w-md mx-auto pointer-events-none">
+<div class="flex gap-4 pointer-events-auto">
+<button class="flex-1 h-14 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-full transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">replay</span>
+                    Retake
+                </button>
+<button class="flex-[2] h-14 bg-primary hover:bg-primary/90 text-background-dark font-bold text-lg rounded-full shadow-[0_0_20px_rgba(37,192,244,0.4)] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add_circle</span>
+                    Log Meal
+                </button>
+</div>
+</div>
+</div>
+</body></html>

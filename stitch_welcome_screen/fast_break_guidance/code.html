@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fast Break Guidance</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#25c0f4",
+              "background-light": "#f5f8f8",
+              "background-dark": "#101e22",
+              "card-dark": "#1b2427",
+              "card-light": "#ffffff",
+              "text-subtle": "#9cb2ba",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+            spacing: {
+                'safe-bottom': 'env(safe-area-inset-bottom)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar hiding for horizontal lists */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#111618] dark:text-white font-display overflow-x-hidden min-h-screen flex flex-col pb-24">
+<!-- Top App Bar -->
+<div class="flex items-center px-4 py-3 justify-between sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-transparent dark:border-white/5 transition-colors">
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-gray-800 dark:text-white">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+</button>
+<h2 class="text-base font-bold leading-tight flex-1 text-center opacity-90 tracking-wide uppercase text-xs text-primary">Fast Breaker AI</h2>
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 active:scale-95 transition-all text-gray-800 dark:text-white">
+<span class="material-symbols-outlined" style="font-size: 24px;">more_vert</span>
+</button>
+</div>
+<!-- Status & Progress -->
+<div class="flex flex-col items-center px-6 pt-4 pb-6 animate-fade-in">
+<div class="relative mb-2">
+<span class="absolute -top-1 -right-4 flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<h1 class="text-3xl md:text-4xl font-bold text-center leading-tight tracking-tight">16h Fast Completed</h1>
+</div>
+<!-- Progress Bar Visual -->
+<div class="w-48 h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full mt-3 overflow-hidden">
+<div class="h-full bg-primary w-full shadow-[0_0_10px_rgba(37,192,244,0.5)]"></div>
+</div>
+<p class="text-text-subtle text-sm md:text-base font-normal leading-normal mt-4 text-center max-w-sm font-body">
+            You did it! 🎉 Now ease back into eating with these personalized, gentle Indian-friendly options.
+        </p>
+</div>
+<!-- Hero Section: Top Pick -->
+<div class="px-4 mb-8 @container">
+<div class="flex items-center justify-between mb-3 px-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">stars</span>
+<h3 class="text-lg font-bold">Best Choice for You</h3>
+</div>
+<span class="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full uppercase tracking-wider">98% Match</span>
+</div>
+<div class="flex flex-col rounded-lg overflow-hidden shadow-lg bg-card-light dark:bg-card-dark ring-1 ring-black/5 dark:ring-white/10 group">
+<div class="relative w-full aspect-[16/9] overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Close up view of a bowl with fresh ripe papaya cubes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDPzG8S8OawDzVvnufBsnRNMOyeavC1bAJTwLdkfIDB-AJfzxi3Ps3gc7OfduPqc3FOrw0_jnzN7YIM8uqqMnJFUMr69LwImHWNo7m_yQ6bwNdBvzKAC9CH6eHM9S6bLpSoWqkPmtxMu_dtLdUOiWBtZ527Ef6sTx340VpaAVhbv9dP6r5Ch0gqNEQyOveio8Gf0JphTfso-xO0xK3Yzpmk2v4OPxdqmVz1-mTcIl3a_JJIBiGQas1_RrtvYGpJcgdj__uHyBgLsaA");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-card-dark/90 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<h4 class="text-white text-2xl font-bold leading-tight mb-1">Papaya Bowl</h4>
+<p class="text-gray-300 text-sm font-medium">Rich in enzymes • Gentle Digestion</p>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<p class="text-gray-600 dark:text-text-subtle text-sm leading-relaxed font-body">
+                    Ideally, start here. Papaya contains papain which helps restart digestion without spiking your insulin levels immediately.
+                </p>
+<div class="flex items-center justify-between pt-2">
+<div class="flex -space-x-2">
+<div class="size-8 rounded-full border-2 border-card-light dark:border-card-dark bg-gray-100 flex items-center justify-center text-[10px] font-bold">GI</div>
+<div class="size-8 rounded-full border-2 border-card-light dark:border-card-dark bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 flex items-center justify-center text-[10px] font-bold">55</div>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-background-dark text-sm font-bold py-2.5 px-6 rounded-full flex items-center gap-2 transition-transform active:scale-95 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" style="font-size: 18px;">check</span>
+                        I Ate This
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Horizontal Carousel: Hydration -->
+<div class="mb-8 w-full">
+<div class="px-6 mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">water_drop</span>
+<h3 class="text-lg font-bold">Hydration First</h3>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar px-4 gap-4 pb-4 snap-x snap-mandatory">
+<!-- Card 1 -->
+<div class="snap-center shrink-0 w-36 flex flex-col gap-2">
+<div class="w-full aspect-square rounded-lg bg-cover bg-center shadow-md relative group overflow-hidden" data-alt="Fresh green coconut with a straw" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJkiTd6yKc6qBL3tJHAc8UrFeJpESlG9GEhekdv1L1oT-OApdus1Uaep01cbSldFiid-t05b9I4qqekkevCRozHRoZlQNPUu8LWMmIN8lMIcZ6lf6vEDjMAzr0kL5JXBGCHr_VwYhMBjAcNw58ZjXGeKIJmRFc8-TJZWbz9R43SWkg00wT6PEY6XE3yZt2MKmJ8zpJhVcYpM-3j07HKn9lC5rAwCFEqYUFXjBOI1dh-Rxm8Ci9hds0UUc9vFsUE7_f2fIzl78ca38");'>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+<button class="absolute bottom-2 right-2 size-8 bg-white/90 dark:bg-black/60 backdrop-blur rounded-full flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+<div>
+<p class="font-bold text-sm leading-tight dark:text-gray-100">Coconut Water</p>
+<p class="text-xs text-text-subtle">Electrolytes</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="snap-center shrink-0 w-36 flex flex-col gap-2">
+<div class="w-full aspect-square rounded-lg bg-cover bg-center shadow-md relative group overflow-hidden" data-alt="Traditional Indian buttermilk or Chaas with spices" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAypJLqd3Uj_yUvTLGVQoFtb4rLvPUhV5VUJOO8XJLFT3AxqfRciJKdtr-_mBZGjErrpe8PvfZbgOLJwC5fim2l8ORI86e9d9PloKPviYB0ULAnrwuWGTS7-75PiY6FdjV4EYCxOi0egSYqVjkzy_lMnRwgo9xFzNSxr97OX1eoLTf9_9VV-21BHRAn6_ebn876ereIVwK9eh04cA4PKqi2Ht1LcmuCVx82ztzz2zixePHDq53ETr2nSDh3mZHYAZmPA-X2v94P2ZY");'>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+<button class="absolute bottom-2 right-2 size-8 bg-white/90 dark:bg-black/60 backdrop-blur rounded-full flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+<div>
+<p class="font-bold text-sm leading-tight dark:text-gray-100">Masala Chaas</p>
+<p class="text-xs text-text-subtle">Probiotic</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="snap-center shrink-0 w-36 flex flex-col gap-2">
+<div class="w-full aspect-square rounded-lg bg-cover bg-center shadow-md relative group overflow-hidden" data-alt="Cup of warm lemon water" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBg7b3-NUN4CSj1lC-RHKtjw8O66h1xdffEDw7uHFsBu-Ho5xw2vg1TXWbcsgfL8QidKGpnpXpO_spmvVavvf-MQF6anIAjt2DCIWdr_6HioM1a016273_zXD2NueQ1RDuOdNJiSUSmRTPZyq_XV6xZaTi-Fo2N66fTn-z_DcdDCyOFuCYtmFODlKyWTAScJsF0zKrLKL6XNEiYHzwAU44ZlNpMMMahJAdSomNSgISeq0KsrGn8hZYpFj1kY64nUNkfbk6z5OQaqSY");'>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
+<button class="absolute bottom-2 right-2 size-8 bg-white/90 dark:bg-black/60 backdrop-blur rounded-full flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+<div>
+<p class="font-bold text-sm leading-tight dark:text-gray-100">Warm Lemon</p>
+<p class="text-xs text-text-subtle">Alkalizing</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Vertical List: Light Solids -->
+<div class="px-4 mb-8">
+<div class="flex items-center gap-2 mb-3 px-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">restaurant</span>
+<h3 class="text-lg font-bold">Light Solids</h3>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Item 1 -->
+<div class="p-3 bg-card-light dark:bg-card-dark rounded-lg shadow-sm border border-gray-100 dark:border-white/5 flex items-center gap-4">
+<div class="size-16 rounded-lg bg-cover bg-center shrink-0" data-alt="Bowl of Moong Dal Khichdi comfort food" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjd_prztH4_QUFBpYEFEAE-tZr9r0Qg-57-gH0QR2LOPyfFZuQAB0hQ2WcbgJNtOYz_0uKMBl085iC4jLGoZEIEOCEE4eoz0eDRkzyC34sE9197J-9uoNcRwvA4VJwoetIqmDGwi4t7vELQN9fnMfSxuJONxx5iL8iGYPwUAAOxEUBPNwCZOBqMM9e0l3Dw9ZGkVBDF1AUZjM1DF3EdsJKPth-SRrVxLSPIdIMt8CRXC_QKPvBR6526Ly78YpBN4XEDGNidwx99BM");'>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-base dark:text-gray-100 truncate">Moong Dal Khichdi</h4>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="text-[10px] uppercase font-bold text-text-subtle bg-gray-100 dark:bg-white/5 px-1.5 py-0.5 rounded">High Protein</span>
+<span class="text-[10px] uppercase font-bold text-text-subtle bg-gray-100 dark:bg-white/5 px-1.5 py-0.5 rounded">Comfort</span>
+</div>
+</div>
+<button class="size-10 rounded-full border border-gray-200 dark:border-white/10 hover:bg-primary hover:border-primary hover:text-background-dark active:scale-95 transition-all flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+<!-- Item 2 -->
+<div class="p-3 bg-card-light dark:bg-card-dark rounded-lg shadow-sm border border-gray-100 dark:border-white/5 flex items-center gap-4">
+<div class="size-16 rounded-lg bg-cover bg-center shrink-0" data-alt="Bowl of plain yogurt curd" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCDTDnznIK_sZ96vtqHmgTyfmzlwqhO4ofBndXE_pY8_i2z8aJmrp0b3VixlJ8iYELwEZlS_mO5cJejzNfhsiTAA7Hu588X6stvuoX5VCf48aU2Y_3k0gMTmudPFl1SSEvZweb0p_qZRkHNkxU085thg7dHVV8Jva07AuAMA3gdP6HTi9yxs8nqHxGFxfO5I9VtViUAJWqwWJiRTrdNqXYDATf1mMgxQa9ho_BVoXswfxMQQuy-SOQBaepnHZY3LD6ilaXhDciLydU");'>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-base dark:text-gray-100 truncate">Homemade Dahi</h4>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="text-[10px] uppercase font-bold text-text-subtle bg-gray-100 dark:bg-white/5 px-1.5 py-0.5 rounded">Gut Health</span>
+</div>
+</div>
+<button class="size-10 rounded-full border border-gray-200 dark:border-white/10 hover:bg-primary hover:border-primary hover:text-background-dark active:scale-95 transition-all flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+<!-- Item 3 -->
+<div class="p-3 bg-card-light dark:bg-card-dark rounded-lg shadow-sm border border-gray-100 dark:border-white/5 flex items-center gap-4">
+<div class="size-16 rounded-lg bg-cover bg-center shrink-0" data-alt="Plate of fresh watermelon slices" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAVv2a4QTcPGO-QnAnLfgblnT8zcKcxdEuZexaE2XPieewZj9bvSwoWRnu6YuJAEVltuAhu6CQvu1vjWt6VYHMkfPQdwUe7EbjO3AbQV0iqryy55E6W6e3hLGWO1NPWeY1nR2Vm_bdg8uNT388VsmixFY7W_aCCey0i49M0OeDkCR5hFOiN-NQohTkw8L8Xtw34ggQ3BspkBxPHYpnEJQL4kwsFKhRNNHxsq1KAVFTDFziJ_BGWXMotuLemXHOM6et7KHZDr9_vAs0");'>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-base dark:text-gray-100 truncate">Seasonal Fruit</h4>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="text-[10px] uppercase font-bold text-text-subtle bg-gray-100 dark:bg-white/5 px-1.5 py-0.5 rounded">Vitamins</span>
+</div>
+</div>
+<button class="size-10 rounded-full border border-gray-200 dark:border-white/10 hover:bg-primary hover:border-primary hover:text-background-dark active:scale-95 transition-all flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Avoid Section -->
+<div class="px-4 mb-24">
+<div class="flex items-center gap-2 mb-3 px-2 text-red-500 dark:text-red-400">
+<span class="material-symbols-outlined" style="font-size: 20px;">warning</span>
+<h3 class="text-lg font-bold">Avoid Spikes (Red Zone)</h3>
+</div>
+<div class="p-5 bg-red-50 dark:bg-[#1a1111] rounded-lg border border-red-100 dark:border-red-900/30">
+<p class="text-sm text-gray-600 dark:text-gray-400 mb-4 font-body leading-relaxed">
+                Your body is sensitive right now. High-glycemic or heavy foods will cause a crash. Save these for later.
+            </p>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar">
+<!-- Avoid Item 1 -->
+<div class="flex flex-col items-center gap-2 min-w-[80px] group cursor-not-allowed">
+<div class="size-14 rounded-full bg-cover bg-center grayscale opacity-60 border-2 border-transparent group-hover:grayscale-0 group-hover:opacity-100 group-hover:border-red-400 transition-all duration-300" data-alt="Fried indian samosas" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD0D4dX_gjjYAyQ7nSxYsu91ib4wlGGy1ZMe6Du4bhyti91K7ERIRNXLPWkz3gnQuFVe37_gCSOJ61yb4jWgHbq9n6FcMP32mplc0DDWwjJ9UlEzqGIIIygRhqPYzlGCBn2a5zXHdcJq0v39tTsd_CRfQ1oQB69gSCM2h0Y_YgfXISoLS8Xw-WNixtTyYYLEoMvIYNJVndRer0Lf8gpG28vCd0EUvkQwQ14BLc6P6-0nUDX-9oFG6kJsBuQ2UlhBgCjftpMTa1Ceu8");'>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-500 group-hover:text-red-400">Samosas</span>
+</div>
+<!-- Avoid Item 2 -->
+<div class="flex flex-col items-center gap-2 min-w-[80px] group cursor-not-allowed">
+<div class="size-14 rounded-full bg-cover bg-center grayscale opacity-60 border-2 border-transparent group-hover:grayscale-0 group-hover:opacity-100 group-hover:border-red-400 transition-all duration-300" data-alt="Glass of sugary cola soda" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0-KvzpH9l8UCArzRYpDhKTyi2VEOdO9411QSw7D2hcnRIUeonXfVCOGBK-o98NKPMMkjPjocRZUUqa5iD5Xa0q4NZBIUYb1HUmmZtgRPyrN_TFVBwcN4jf_Yv1omfCTY60BJBQyJdUf_kred_bvzoW4irXjwiTGmXbcOzqCzbsRCtRFbSErfliZfM4ywuspViICsBIrQ5x7fiutMJ7pT-UDscS2Uso96GN2qrAWLkRyDYtzSDsbkHrTeEPZViZAP0U8590YQ55FY");'>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-500 group-hover:text-red-400">Soda</span>
+</div>
+<!-- Avoid Item 3 -->
+<div class="flex flex-col items-center gap-2 min-w-[80px] group cursor-not-allowed">
+<div class="size-14 rounded-full bg-cover bg-center grayscale opacity-60 border-2 border-transparent group-hover:grayscale-0 group-hover:opacity-100 group-hover:border-red-400 transition-all duration-300" data-alt="Heavy creamy dessert" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBm7HfnXz5t_Fwz_guAkGuN1HfCdaSlu236og_wh90bKkseBkTHw-YzOyrJPFMEzyRyZzQSyN-NX6R__feEqnpbvaykYjMRA6gt5a_4sGPpDSykNbY0GNS2slJhK5VY8Q-GxD-9-RMVWlJ5gsbHeqvKnL_KeN66o1_DRvV9gwj5Fnff9ylfwQ7YQ2f_8E6jjKzcZQ9NLjGupm6lNlzyHam_tNuL49RmCycmdxrkebe-f4fOk6gNlUt9T7fS177b5yVVBLFSieA2evM");'>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-500 group-hover:text-red-400">Heavy Cream</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button -->
+<div class="fixed bottom-6 left-0 right-0 px-6 z-40 flex justify-center pointer-events-none">
+<button class="pointer-events-auto shadow-2xl shadow-primary/40 flex items-center justify-center gap-3 bg-primary text-background-dark font-bold text-base h-14 px-8 rounded-full transition-transform hover:-translate-y-1 active:scale-95 border-2 border-background-dark/10">
+<span class="material-symbols-outlined" style="font-size: 22px;">photo_camera</span>
+<span>Log Meal</span>
+</button>
+</div>
+</body></html>

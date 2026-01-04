@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Chat Main Screen</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25c0f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "bubble-user": "#283539",
+                        "bubble-ai": "#1c2a30",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "1.5rem", 
+                        "xl": "2rem", 
+                        "2xl": "2.5rem",
+                        "full": "9999px"
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slight': 'bounce-slight 1s infinite',
+                    },
+                    keyframes: {
+                        'bounce-slight': {
+                            '0%, 100%': { transform: 'translateY(-25%)', animationTimingFunction: 'cubic-bezier(0.8,0,1,1)' },
+                            '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0,0,0.2,1)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283539; 
+            border-radius: 10px;
+        }
+        
+        /* Hide scrollbar for clean horizontal scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .ai-gradient-text {
+            background: linear-gradient(135deg, #25c0f4 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased h-screen overflow-hidden selection:bg-primary/30">
+<div class="relative flex h-full w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
+<!-- Header -->
+<header class="absolute top-0 left-0 right-0 z-20 flex items-center justify-between p-4 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200/10 dark:border-gray-800/50">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-10 rounded-full bg-gradient-to-tr from-primary to-blue-600 p-[2px]">
+<div class="size-full rounded-full bg-background-dark flex items-center justify-center overflow-hidden">
+<img alt="AI Avatar" class="size-full object-cover opacity-90" data-alt="Abstract 3d robot avatar glowing blue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-PYwncfpVCJWHMSWAW8MpYm61V2WqmhT5b61NtjwcHX9j4c9k7U1_OlA64PLy_gbYzTcShuJx5MzI5PUnv_p8zkEamBKJoVZ94DvpzzyB5Ng4RGcUFfvjrrrK7jHksPJJupv9HRIo_DUD3XMQpLnpLNNrBewxPnukjWAye4rnZDB93Qoe2obyaPsEWvp2bIhMhe7RFkw6Pcxyikld5vrJBXV5--LzdcDSyYoISIhXv8kYI5jMdrwwxwvGuEXS1cpJ_PqhWGzcqXo"/>
+</div>
+</div>
+<div class="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full border-2 border-background-dark"></div>
+</div>
+<div class="flex flex-col">
+<h2 class="text-base font-bold leading-tight tracking-tight dark:text-white text-slate-900">Coach AI</h2>
+<span class="text-xs font-medium text-primary">Online</span>
+</div>
+</div>
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-white/5 transition-colors text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</header>
+<!-- Chat Stream -->
+<main class="flex-1 overflow-y-auto pt-24 pb-4 px-4 flex flex-col gap-6 scroll-smooth">
+<!-- Timestamp -->
+<div class="flex justify-center w-full">
+<span class="text-xs font-medium text-slate-400 dark:text-slate-500 bg-white/50 dark:bg-white/5 px-3 py-1 rounded-full backdrop-blur-sm">
+                    Today 9:41 AM
+                </span>
+</div>
+<!-- AI Message 1 -->
+<div class="flex items-end gap-3 w-full group">
+<div class="size-8 rounded-full overflow-hidden shrink-0 bg-background-dark border border-white/10 hidden sm:block">
+<img alt="AI Avatar" class="size-full object-cover" data-alt="Abstract 3d robot avatar glowing blue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaPqlXPWi8PxvYPLNMkF7OaUx01tdidHmPD-RG522a4zO1IV-LJ-rK3HF4nX0zi20SKVyNK2DcpDME-FGWwDp8z7BoLZTf-m17QisDb_Hs5-DgAtXXZxVNzxRireVpX9HFcibd_wboOeixnik57y5fgZ_6CSEgUC-m5fgLmkf3s6McX3d9-19e6oNmuW1PQp9gsZyNsMlZfg9qD3cLXJrFxpT-_szPxinA11zqRc68Eo5qqyejkNrPq6FigCMmcWvn-UemICQqus4"/>
+</div>
+<div class="flex flex-col gap-1 max-w-[85%]">
+<span class="text-[11px] font-medium text-slate-400 ml-1">AI Coach</span>
+<div class="relative p-4 rounded-2xl rounded-bl-sm bg-gradient-to-br from-[#1c2a30] to-[#12191b] border border-primary/20 shadow-[0_4px_20px_-10px_rgba(37,192,244,0.15)] text-white">
+<p class="text-[15px] leading-relaxed font-normal">
+                            Hey! Ready to hit your macros today? 💪 Let me know what your first meal is.
+                        </p>
+</div>
+</div>
+</div>
+<!-- User Message 1 -->
+<div class="flex items-end gap-3 w-full justify-end group">
+<div class="flex flex-col gap-1 items-end max-w-[85%]">
+<div class="relative p-4 rounded-2xl rounded-br-sm bg-gray-100 dark:bg-[#283539] text-slate-800 dark:text-gray-100">
+<p class="text-[15px] leading-relaxed font-normal">
+                            I just ate 2 chapatis and dal.
+                        </p>
+</div>
+<span class="text-[11px] font-medium text-slate-400 mr-1">Read 9:42 AM</span>
+</div>
+</div>
+<!-- AI Message 2 -->
+<div class="flex items-end gap-3 w-full group">
+<div class="size-8 rounded-full overflow-hidden shrink-0 bg-background-dark border border-white/10 hidden sm:block">
+<img alt="AI Avatar" class="size-full object-cover" data-alt="Abstract 3d robot avatar glowing blue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6dK5uXyaX7t6uMH1ft5unO4RaGsx8HR51-qnNF9ZhApSL2tJZnVV1eG6zD5AP5VPRX4wfg-0rmcNH6jwH7xITHFeubJNgAdoF559vw495rzhAcvq-MAZur54804eYpvIabIVsF8dC5lZb7FyrE4kTtsKoUhP1zR9hLDmRp4HUD-Uog8jkuLFzEajybikL9632S5fwhCWwKn-4tEHOTF3gbTwnkpZKe6dAKrO8FkNmhKrXb0vvr8h24yN840YKND-H8LDFbUP5OmI"/>
+</div>
+<div class="flex flex-col gap-1 max-w-[85%]">
+<span class="text-[11px] font-medium text-slate-400 ml-1">AI Coach</span>
+<div class="relative p-4 rounded-2xl rounded-bl-sm bg-gradient-to-br from-[#1c2a30] to-[#12191b] border border-primary/20 shadow-[0_4px_20px_-10px_rgba(37,192,244,0.15)] text-white">
+<p class="text-[15px] leading-relaxed font-normal mb-3">
+                            Got it. That's roughly <span class="text-primary font-bold">350 calories</span>. Good protein source from the dal! 🍲
+                        </p>
+<p class="text-[15px] leading-relaxed font-normal">
+                            Do you want to log a quick 10 min walk to balance your glucose spike?
+                        </p>
+</div>
+<!-- Interactive Elements within chat -->
+<div class="mt-1 flex gap-2">
+<button class="px-4 py-2 rounded-xl bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary text-sm font-medium transition-colors">
+                            Yes, log walk
+                        </button>
+<button class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 text-sm font-medium transition-colors">
+                            No thanks
+                        </button>
+</div>
+</div>
+</div>
+<!-- Typing Indicator -->
+<div class="flex items-end gap-3 w-full animate-pulse">
+<div class="size-8 rounded-full overflow-hidden shrink-0 bg-background-dark border border-white/10 hidden sm:block opacity-50">
+<img alt="AI Avatar" class="size-full object-cover" data-alt="Abstract 3d robot avatar glowing blue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3fyMNpUNJzJy-WTX9aSJYpn0IofSevGbPE_YTCNuUebTexabiJBOwB6eWCikzG3NTXTX-_tquG8PNUUqdjtD7qCmgesrsNTqMtpTFmJRAwJSRaW19qkGSsWGJ76V236cQlpp2NUNnHMgPOZCIG5vsUEpAe2b0VoxKJTOP7HidPfsmNv18HVTmLdjcOnW_yxUpJecYxveecEo4rz93H9YnmGetITWVbg91SMmiQfiZlonSurstFiN6Oq1HPgzvrU4bIAsu7tx3gok"/>
+</div>
+<div class="flex items-center gap-1 p-3 rounded-2xl rounded-bl-sm bg-gradient-to-br from-[#1c2a30]/50 to-[#12191b]/50 border border-primary/10 w-16 h-10">
+<div class="size-1.5 bg-primary rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+<div class="size-1.5 bg-primary rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+<div class="size-1.5 bg-primary rounded-full animate-bounce"></div>
+</div>
+</div>
+<!-- Spacer for bottom input area -->
+<div class="h-32 w-full shrink-0"></div>
+</main>
+<!-- Input Area Footer -->
+<footer class="absolute bottom-0 left-0 right-0 z-30 flex flex-col bg-background-light dark:bg-background-dark">
+<!-- Gradient Overlay Fade -->
+<div class="absolute -top-12 left-0 right-0 h-12 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent pointer-events-none"></div>
+<!-- Quick Actions Chips -->
+<div class="flex items-center gap-2 px-4 pb-3 overflow-x-auto no-scrollbar w-full">
+<button class="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-semibold hover:bg-primary/20 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+                    Scan Food
+                </button>
+<button class="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 text-xs font-medium hover:bg-slate-200 dark:hover:bg-white/10 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">water_drop</span>
+                    Log Water
+                </button>
+<button class="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 text-xs font-medium hover:bg-slate-200 dark:hover:bg-white/10 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">directions_walk</span>
+                    Start Walk
+                </button>
+<button class="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 text-xs font-medium hover:bg-slate-200 dark:hover:bg-white/10 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">restaurant_menu</span>
+                    Suggest Snack
+                </button>
+</div>
+<!-- Input Bar -->
+<div class="w-full px-4 pb-6 pt-2 bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-white/5">
+<div class="flex items-end gap-2 relative">
+<!-- Attachment / Camera Button -->
+<button class="flex items-center justify-center size-10 mb-1 rounded-full text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[26px]">add_a_photo</span>
+</button>
+<!-- Text Input -->
+<div class="flex-1 min-h-[48px] relative bg-gray-100 dark:bg-[#1a262a] rounded-[24px] border border-transparent focus-within:border-primary/50 transition-colors flex items-center">
+<textarea class="w-full bg-transparent border-none text-slate-800 dark:text-white placeholder-slate-400 text-[15px] resize-none py-3 px-4 focus:ring-0 max-h-32 overflow-y-auto leading-relaxed" placeholder="Type a message..." rows="1" style="min-height: 44px;"></textarea>
+</div>
+<!-- Send Button -->
+<button class="flex items-center justify-center size-10 mb-1 rounded-full bg-gradient-to-tr from-primary to-blue-500 text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px] ml-0.5">arrow_upward</span>
+</button>
+</div>
+</div>
+</footer>
+</div>
+<!-- Script to auto-resize textarea -->
+<script>
+        const textarea = document.querySelector('textarea');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    </script>
+</body></html>

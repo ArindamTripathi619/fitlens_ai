@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meal Log Summary</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#25c0f4",
+                "background-light": "#f5f8f8",
+                "background-dark": "#101e22",
+                "card-light": "#ffffff",
+                "card-dark": "#192b30",
+              },
+              fontFamily: {
+                "display": ["Space Grotesk", "sans-serif"],
+                "body": ["Noto Sans", "sans-serif"],
+              },
+              borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+<style>
+        /* Custom scrollbar hide for cleaner UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col antialiased selection:bg-primary selection:text-black">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-20 flex items-center justify-between px-4 py-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight">Meal Summary</h1>
+<div class="size-10"></div> <!-- Spacer for alignment -->
+</header>
+<main class="flex-1 px-4 pb-32 flex flex-col gap-6">
+<!-- Stats / Macro Dashboard -->
+<section>
+<!-- Total Calories Hero -->
+<div class="flex flex-col items-center justify-center py-6">
+<div class="relative flex items-center justify-center size-40 rounded-full border-4 border-card-dark dark:border-card-light/10 mb-4 bg-card-light dark:bg-card-dark shadow-lg shadow-primary/10">
+<svg class="absolute inset-0 size-full -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="transparent" r="46" stroke="#25c0f4" stroke-dasharray="289" stroke-dashoffset="70" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="text-center z-10">
+<span class="block text-4xl font-bold tracking-tighter">650</span>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-widest">Kcal</span>
+</div>
+</div>
+</div>
+<!-- Macros Grid -->
+<div class="grid grid-cols-3 gap-3">
+<!-- Protein -->
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-4 flex flex-col items-center gap-2 shadow-sm border border-slate-100 dark:border-white/5">
+<div class="size-2 rounded-full bg-primary mb-1"></div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Protein</p>
+<p class="text-xl font-bold">30g</p>
+</div>
+<!-- Carbs -->
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-4 flex flex-col items-center gap-2 shadow-sm border border-slate-100 dark:border-white/5">
+<div class="size-2 rounded-full bg-yellow-400 mb-1"></div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Carbs</p>
+<p class="text-xl font-bold">85g</p>
+</div>
+<!-- Fats -->
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-4 flex flex-col items-center gap-2 shadow-sm border border-slate-100 dark:border-white/5">
+<div class="size-2 rounded-full bg-purple-400 mb-1"></div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">Fats</p>
+<p class="text-xl font-bold">20g</p>
+</div>
+</div>
+</section>
+<!-- Food Items List -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold tracking-tight">Food Items</h2>
+<span class="text-sm text-primary font-medium">3 items</span>
+</div>
+<!-- Item 1 -->
+<div class="group relative bg-card-light dark:bg-card-dark p-3 rounded-[2rem] flex items-center gap-4 shadow-sm border border-slate-100 dark:border-white/5 transition-transform active:scale-[0.98]">
+<div class="shrink-0 size-16 rounded-full bg-cover bg-center shadow-inner" data-alt="Close up of paneer butter masala in a bowl with rich orange gravy" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuClLNdnJgJSk6pOdVU23ILrRfWsE6mGlidmSbuqa55ArKQqPmKWWHnVxD4BnTYXVmTbDedGZi_8mmAGsEIf7_bYWlM9fr89JKmKgdbOmyksGy85HtZK9eiHZIeNhVcaZ520NLp5iYDnvzT4zMOGbQELobhUkofhx0EApesUsS1CLAVPF2OD9xFBZOFCqMbtKWofJSOMbEBTXvC0rTancGW_2Sty9EcefTRRu8qNCuc2Js-FLecE1W92NjO5-7mTUMfB95hw8xdw7fQ");'>
+</div>
+<div class="flex-1 min-w-0 py-1">
+<h3 class="text-base font-bold truncate">Paneer Butter Masala</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 truncate">1 Bowl, 300g</p>
+<p class="text-xs font-medium text-primary mt-1">340 kcal</p>
+</div>
+<div class="flex items-center gap-1 pr-2">
+<button class="p-2 rounded-full text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 rounded-full text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group relative bg-card-light dark:bg-card-dark p-3 rounded-[2rem] flex items-center gap-4 shadow-sm border border-slate-100 dark:border-white/5 transition-transform active:scale-[0.98]">
+<div class="shrink-0 size-16 rounded-full bg-cover bg-center shadow-inner" data-alt="Close up of crispy garlic naan bread with herbs" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBDGZ8IvbcOb2VIO-Ng1zWK5N3_KZ0y0lH34WQ6bvs-fj5KWuZGYF4-BR1JQAp8ttKy4lLTVm2XahWcIaOd_KpuICs8_0HCbJUnh-GbMPok3RKx5BKdpydoeQHOBxY7ywbbLkqsSle7hEVo2JjuW10bwPVHpQutQ0ZKNoEOCgeX7DJEjQvkfqp1Xo5pa4lYvI44Df8fXm8qGAwVtnHGazluE7RqES6chsUT-JmB104HKQsPoiWrfiRak8L_GGwlWL9tnyUW0nIQXXs");'>
+</div>
+<div class="flex-1 min-w-0 py-1">
+<h3 class="text-base font-bold truncate">Garlic Naan</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 truncate">2 pieces</p>
+<p class="text-xs font-medium text-primary mt-1">260 kcal</p>
+</div>
+<div class="flex items-center gap-1 pr-2">
+<button class="p-2 rounded-full text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 rounded-full text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group relative bg-card-light dark:bg-card-dark p-3 rounded-[2rem] flex items-center gap-4 shadow-sm border border-slate-100 dark:border-white/5 transition-transform active:scale-[0.98]">
+<div class="shrink-0 size-16 rounded-full bg-cover bg-center shadow-inner" data-alt="Bowl of fresh cucumber yogurt raita with spices" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA79IHFz2-TE8Y01g89IbbaGn9Xs6Xto0fxAH-yOyrmcs3yfLZ8smeh5twEMQxYisXhDTl1aVYjdn_5ayPfc6q_h49ViECin2E90mWIpJ0M5lw9kk0tuoQ52jecPSENhZGVEJw8UkNAwEAiBPoseOMEmFCCviYTrzHBf__3bFx96OoJGQ-h4Z7H32MUDUtm0IDEp4wHAOwwmEfXTu8GxtMQmZftgG3x_NAwJlkEoJOy9DdkgzoI09QKOlIsDPi5MMz8ha_WZ6cs4BY");'>
+</div>
+<div class="flex-1 min-w-0 py-1">
+<h3 class="text-base font-bold truncate">Cucumber Raita</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 truncate">1 small cup</p>
+<p class="text-xs font-medium text-primary mt-1">50 kcal</p>
+</div>
+<div class="flex items-center gap-1 pr-2">
+<button class="p-2 rounded-full text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 rounded-full text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Add More Button -->
+<button class="w-full py-4 rounded-[2rem] border-2 border-dashed border-slate-300 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:border-primary hover:text-primary transition-all flex items-center justify-center gap-2 group mt-2">
+<span class="material-symbols-outlined transition-transform group-hover:scale-110">add_circle</span>
+<span class="font-medium">Add Missing Item</span>
+</button>
+</section>
+</main>
+<!-- Sticky Footer -->
+<div class="fixed bottom-0 left-0 w-full p-4 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark pt-12 z-20">
+<div class="max-w-md mx-auto">
+<button class="w-full bg-primary hover:bg-primary/90 text-black font-bold text-lg py-4 rounded-full shadow-lg shadow-primary/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span>Confirm &amp; Log Meal</span>
+<span class="material-symbols-outlined">check_circle</span>
+</button>
+</div>
+</div>
+</body></html>

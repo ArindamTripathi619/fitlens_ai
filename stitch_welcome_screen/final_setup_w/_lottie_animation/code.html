@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile Completed</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6938fa",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#140f23",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased transition-colors duration-300">
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden selection:bg-primary/30 text-gray-900 dark:text-white">
+<!-- Background Ambient Effects for Vibrant Minimalism -->
+<!-- Top Left Glow -->
+<div class="absolute top-[-10%] left-[-20%] w-[70vw] h-[70vw] rounded-full bg-primary/20 blur-[100px] pointer-events-none mix-blend-screen dark:mix-blend-lighten opacity-60"></div>
+<!-- Bottom Right Glow -->
+<div class="absolute bottom-[-10%] right-[-20%] w-[80vw] h-[80vw] rounded-full bg-blue-500/10 dark:bg-blue-600/10 blur-[120px] pointer-events-none opacity-50"></div>
+<!-- Main Content Wrapper -->
+<div class="flex-grow flex flex-col items-center justify-center px-6 py-8 relative z-10 w-full max-w-lg mx-auto">
+<!-- Animation Container Area -->
+<!-- Simulating a Lottie animation container with a central visual focus -->
+<div class="relative w-full aspect-square max-w-[340px] flex items-center justify-center mb-8">
+<!-- Concentric rings effect to simulate pulsing AI -->
+<div class="absolute inset-0 m-auto w-[90%] h-[90%] border border-primary/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
+<div class="absolute inset-0 m-auto w-[70%] h-[70%] border border-primary/40 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+<!-- Glow behind the main graphic -->
+<div class="absolute inset-0 bg-primary/30 blur-[50px] rounded-full scale-75"></div>
+<!-- Main Illustration Image -->
+<div class="relative w-4/5 h-4/5 bg-contain bg-center bg-no-repeat drop-shadow-2xl z-10" data-alt="Abstract 3D illustration of a floating checklist and health icons representing successful profile completion" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBmTnOrsZk0_WZmnk43xA3fE_iNUDdBu45l15APJk-Wq4W5jRCajMRj4tHaDveMPweRQ7k1HMCUXy_rYuWA3x9g3Dh6hle-ke7TvvWYa7c3esbT0Z578xtMJGwqTqiDU0k2a8xVXYZ-pvqjLJv5CGyfhLEcyrC0BPtBSTm0HMjeOcoA2FFAyQSDnukGbqP6vFiszZL7I1X4w0lLQ3mnwGqJaiT1N78F7iLhuvH9PJtGDOTddAPLd4PbCaXKPM-aFAv41tsPPcvJ1S4");'>
+</div>
+</div>
+<!-- Text Content -->
+<div class="w-full space-y-4 text-center">
+<h1 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">
+                    Profile Completed
+                </h1>
+<div class="px-4">
+<p class="text-base md:text-lg text-gray-600 dark:text-gray-300 font-normal leading-relaxed">
+                        Your personalized Indian diet plan and AI workout routine are ready. Let's get moving.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Action Button -->
+<div class="w-full max-w-lg mx-auto px-6 pb-10 pt-4 z-20">
+<button class="group relative flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 bg-primary text-white text-lg font-bold leading-normal tracking-[0.015em] shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+<!-- Button Background Gradient overlay on hover -->
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="mr-2">Go to Dashboard</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Fitness Coach Highlight</title>
+<!-- Material Symbols Link -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#794dff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#140f23",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-gray-900 dark:text-white overflow-hidden">
+<div class="relative flex h-screen w-full flex-col overflow-hidden bg-[#121018] group/design-root">
+<!-- Background Layer (Modified HeaderImage) -->
+<!-- Using a full-screen background image to create the immersive experience -->
+<div class="absolute inset-0 h-full w-full z-0">
+<div class="h-full w-full bg-cover bg-center bg-no-repeat" data-alt="Young athletic person resting after a run looking at smart watch" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBNd-ZdtpwG5wp4Bevwc95Uxo9yjxpKWqcAktpelaaMbr_8s4gIvCG0leVYYm8buEDhZ-4I6KJ1nTiy0OpFY_A31fCmGr0pGMjME7Xm2Z_Gig117rrC8U9icgmKacxlAMpeTpRDMVcG7jcm9XQ1Y6nS-F0MrOlzkuS4k7nx7vlZAGp6IGRcyk9XbDIU34lncWVlckgmDP02j0cuIWDfP1LkcMj5I-zoT1Xdx0OdbFS_94IaWz3wgZkxSR1EROyBcDZifXUpOmhM_Qc");'>
+<!-- Gradient Overlay for text legibility and mood -->
+<div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/90"></div>
+</div>
+</div>
+<!-- Top Navigation (Modified SingleButton) -->
+<div class="relative z-10 flex w-full justify-end px-6 py-6 pt-12">
+<button class="flex min-w-[70px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-9 px-4 bg-black/20 backdrop-blur-md border border-white/10 text-white text-sm font-semibold leading-normal tracking-[0.015em] hover:bg-black/30 transition-all">
+<span class="truncate">Skip</span>
+</button>
+</div>
+<!-- Spacer to push content to bottom -->
+<div class="flex-grow"></div>
+<!-- Bottom Card Section (Modified Card) -->
+<!-- Floating glassmorphic card effect -->
+<div class="relative z-20 w-full px-4 pb-8 @container">
+<div class="flex flex-col items-stretch justify-start rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.25)] bg-white/95 dark:bg-[#1e1b28]/95 backdrop-blur-xl border border-white/20 dark:border-white/5 p-8 transition-transform">
+<!-- Badge -->
+<div class="flex items-center gap-2 mb-4">
+<div class="flex items-center gap-1 rounded-full bg-primary/15 px-3 py-1 text-primary">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<p class="text-xs font-bold uppercase tracking-wide">AI Powered</p>
+</div>
+</div>
+<!-- Headline -->
+<div class="flex flex-col gap-3 mb-6">
+<h1 class="text-3xl font-extrabold leading-[1.1] tracking-tight text-gray-900 dark:text-white">
+                        Your Personal <br/>
+<span class="text-primary">AI Coach</span>
+</h1>
+<p class="text-base font-normal leading-relaxed text-gray-600 dark:text-gray-400">
+                        Get real-time feedback on your form and personalized workout plans that adapt to your student schedule.
+                    </p>
+</div>
+<!-- Footer Actions (Modified PageIndicators + Button) -->
+<div class="flex items-center justify-between mt-4">
+<!-- Page Indicators -->
+<div class="flex flex-row items-center gap-2">
+<div class="h-2.5 w-2.5 rounded-full bg-gray-300 dark:bg-[#403956]"></div>
+<!-- Active Indicator -->
+<div class="h-2.5 w-8 rounded-full bg-primary shadow-[0_0_8px_rgba(121,77,255,0.5)]"></div>
+<div class="h-2.5 w-2.5 rounded-full bg-gray-300 dark:bg-[#403956]"></div>
+</div>
+<!-- Continue Button -->
+<button class="flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full h-12 pl-6 pr-5 bg-primary text-white text-sm font-bold leading-normal shadow-lg shadow-primary/40 hover:scale-105 active:scale-95 transition-all">
+<span class="truncate">Continue</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dietary Preferences Input</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6938fa",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#140f23",
+                        "card-dark": "#1E1E24",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-white transition-colors duration-300">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl">
+<!-- Header / Progress -->
+<div class="flex w-full flex-col px-6 pt-8 pb-2">
+<!-- Navigation Row -->
+<div class="flex items-center justify-between mb-6">
+<button class="p-2 -ml-2 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-200">arrow_back</span>
+</button>
+<div class="text-sm font-medium text-slate-500 dark:text-slate-400">Step 2 of 5</div>
+<button class="p-2 -mr-2 rounded-full hover:bg-white/10 transition-colors opacity-0 pointer-events-none">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Progress Indicator -->
+<div class="flex w-full flex-row items-center gap-2">
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 flex-1 rounded-full bg-slate-200 dark:bg-white/10"></div>
+<div class="h-1.5 flex-1 rounded-full bg-slate-200 dark:bg-white/10"></div>
+<div class="h-1.5 flex-1 rounded-full bg-slate-200 dark:bg-white/10"></div>
+</div>
+</div>
+<!-- Illustration Area (Lottie Placeholder) -->
+<div class="px-6 py-4 flex justify-center">
+<div class="w-48 h-48 rounded-full bg-gradient-to-tr from-primary/20 to-purple-400/10 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-center bg-contain bg-no-repeat opacity-90" data-alt="3D illustration of a healthy salad bowl with floating vegetables" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDAba0TeZ_YJXddxZ-y0OPtUdczYdokeBuAIKMe9RPPK2EdhSMHHnKtG5HtXo5xp8Y2ENcQUJuoT-M38iW-mjCk5UzJmsxPsci_vJXqGnzP5OfBzjpi3RpqhktnnrVf4sdyIxUU-fntw53kzGYtp3mAAGyAAko1IGLgdOqes3bbT-RMvbmHtahX2Dx-DzqSf9H7nHF9GAdkQq-ZsdJZ134dZmoszBuXfJ6lIuiaVDLgIZdUPq60SFoWuRkaZvJ8zXmYGR4uLruo5yY'); mask-image: radial-gradient(circle, black 60%, transparent 100%); -webkit-mask-image: radial-gradient(circle, black 60%, transparent 100%);">
+</div>
+<!-- Decorative Circle Ring -->
+<div class="absolute inset-0 border-4 border-primary/10 rounded-full scale-110"></div>
+</div>
+</div>
+<!-- Text Content -->
+<div class="px-6 pb-6 text-center">
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">
+                Pick your preference
+            </h1>
+<p class="text-slate-500 dark:text-slate-400 text-base leading-relaxed">
+                This helps our AI suggest meals you'll actually love and stick to.
+            </p>
+</div>
+<!-- Selection List -->
+<div class="flex-1 px-4 pb-24">
+<div class="flex flex-col gap-3">
+<!-- Option: Vegetarian -->
+<label class="group relative flex items-center justify-between p-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-card-dark cursor-pointer transition-all duration-200 hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:shadow-[0_0_0_1px_#6938fa]">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined">eco</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Vegetarian</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Plant-based + Dairy</span>
+</div>
+</div>
+<div class="h-6 w-6 rounded-full border-2 border-slate-300 dark:border-slate-600 group-has-[:checked]:border-primary group-has-[:checked]:bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-white opacity-0 group-has-[:checked]:opacity-100">check</span>
+</div>
+<input checked="" class="sr-only" name="diet_preference" type="radio" value="vegetarian"/>
+</label>
+<!-- Option: Non-Vegetarian -->
+<label class="group relative flex items-center justify-between p-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-card-dark cursor-pointer transition-all duration-200 hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:shadow-[0_0_0_1px_#6938fa]">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-600 dark:text-red-400">
+<span class="material-symbols-outlined">set_meal</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Non-Vegetarian</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Meat, Fish, Egg + Veg</span>
+</div>
+</div>
+<div class="h-6 w-6 rounded-full border-2 border-slate-300 dark:border-slate-600 group-has-[:checked]:border-primary group-has-[:checked]:bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-white opacity-0 group-has-[:checked]:opacity-100">check</span>
+</div>
+<input class="sr-only" name="diet_preference" type="radio" value="non-vegetarian"/>
+</label>
+<!-- Option: Eggetarian -->
+<label class="group relative flex items-center justify-between p-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-card-dark cursor-pointer transition-all duration-200 hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:shadow-[0_0_0_1px_#6938fa]">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center text-yellow-600 dark:text-yellow-400">
+<span class="material-symbols-outlined">egg</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Eggetarian</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Vegetarian + Eggs</span>
+</div>
+</div>
+<div class="h-6 w-6 rounded-full border-2 border-slate-300 dark:border-slate-600 group-has-[:checked]:border-primary group-has-[:checked]:bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-white opacity-0 group-has-[:checked]:opacity-100">check</span>
+</div>
+<input class="sr-only" name="diet_preference" type="radio" value="eggetarian"/>
+</label>
+<!-- Option: Vegan -->
+<label class="group relative flex items-center justify-between p-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-card-dark cursor-pointer transition-all duration-200 hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:shadow-[0_0_0_1px_#6938fa]">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined">grass</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Vegan</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">No animal products</span>
+</div>
+</div>
+<div class="h-6 w-6 rounded-full border-2 border-slate-300 dark:border-slate-600 group-has-[:checked]:border-primary group-has-[:checked]:bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-white opacity-0 group-has-[:checked]:opacity-100">check</span>
+</div>
+<input class="sr-only" name="diet_preference" type="radio" value="vegan"/>
+</label>
+<!-- Option: Jain -->
+<label class="group relative flex items-center justify-between p-4 rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-card-dark cursor-pointer transition-all duration-200 hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:shadow-[0_0_0_1px_#6938fa]">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined">spa</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-slate-900 dark:text-white">Jain</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Veg + No onion/garlic/root veg</span>
+</div>
+</div>
+<div class="h-6 w-6 rounded-full border-2 border-slate-300 dark:border-slate-600 group-has-[:checked]:border-primary group-has-[:checked]:bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-white opacity-0 group-has-[:checked]:opacity-100">check</span>
+</div>
+<input class="sr-only" name="diet_preference" type="radio" value="jain"/>
+</label>
+</div>
+</div>
+<!-- Sticky Footer -->
+<div class="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark dark:to-transparent pointer-events-none flex justify-center max-w-md mx-auto">
+<button class="pointer-events-auto w-full rounded-full bg-primary h-14 text-white font-semibold text-lg shadow-lg shadow-primary/30 hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                Continue
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sleep Analysis &amp; Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25c0f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "card-dark": "#1b262a",
+                        "accent-green": "#0bda57",
+                        "accent-orange": "#ff9f43",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col items-center">
+<!-- Mobile Container -->
+<div class="w-full max-w-md bg-background-light dark:bg-background-dark min-h-screen flex flex-col relative overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between p-4 sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-transparent hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-black dark:text-white">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold text-black dark:text-white">Sleep Analysis</h1>
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-transparent hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-black dark:text-white">
+<span class="material-symbols-outlined">share</span>
+</button>
+</header>
+<!-- Time Range Selector (Chips) -->
+<div class="px-4 pb-4 overflow-x-auto no-scrollbar">
+<div class="flex gap-2">
+<button class="px-5 py-2 rounded-full bg-primary text-background-dark text-sm font-bold shadow-[0_0_15px_rgba(37,192,244,0.3)] whitespace-nowrap">
+                    This Week
+                </button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-card-dark text-black dark:text-gray-400 text-sm font-medium border border-gray-200 dark:border-gray-800 whitespace-nowrap hover:bg-gray-50 dark:hover:bg-[#233036] transition-colors">
+                    Last Week
+                </button>
+<button class="px-5 py-2 rounded-full bg-white dark:bg-card-dark text-black dark:text-gray-400 text-sm font-medium border border-gray-200 dark:border-gray-800 whitespace-nowrap hover:bg-gray-50 dark:hover:bg-[#233036] transition-colors">
+                    Month
+                </button>
+</div>
+</div>
+<!-- Main Content Scroll Area -->
+<main class="flex-1 px-4 flex flex-col gap-6 pb-24">
+<!-- Hero Chart Card -->
+<div class="w-full bg-white dark:bg-card-dark rounded-xl p-5 border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">Weekly Average</p>
+<h2 class="text-4xl font-bold text-black dark:text-white tracking-tight">7h 12m</h2>
+</div>
+<div class="flex items-center gap-1 text-accent-green bg-accent-green/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="text-xs font-bold">+12%</span>
+</div>
+</div>
+<!-- Chart Area -->
+<div class="h-48 w-full relative">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between text-xs text-gray-400 dark:text-gray-600 font-medium">
+<div class="w-full border-b border-dashed border-gray-200 dark:border-gray-700/50 h-0 flex items-center"><span class="bg-white dark:bg-card-dark pr-2 absolute -left-0">10h</span></div>
+<div class="w-full border-b border-dashed border-gray-200 dark:border-gray-700/50 h-0 flex items-center"><span class="bg-white dark:bg-card-dark pr-2 absolute -left-0">8h</span></div>
+<div class="w-full border-b border-dashed border-gray-200 dark:border-gray-700/50 h-0 flex items-center"><span class="bg-white dark:bg-card-dark pr-2 absolute -left-0">6h</span></div>
+<div class="w-full border-b border-dashed border-gray-200 dark:border-gray-700/50 h-0 flex items-center"><span class="bg-white dark:bg-card-dark pr-2 absolute -left-0">4h</span></div>
+</div>
+<!-- SVG Chart -->
+<svg class="absolute inset-0 h-full w-full pt-2 pb-6 pl-6" preserveaspectratio="none" viewbox="0 0 100 50">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#25c0f4" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#25c0f4" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Area -->
+<path d="M0,40 L16,25 L32,30 L48,15 L64,20 L80,10 L100,25 L100,50 L0,50 Z" fill="url(#chartGradient)"></path>
+<!-- Line -->
+<polyline fill="none" points="0,40 16,25 32,30 48,15 64,20 80,10 100,25" stroke="#25c0f4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></polyline>
+<!-- Points -->
+<circle class="fill-black dark:fill-card-dark stroke-primary" cx="16" cy="25" r="1.5" stroke-width="1"></circle>
+<circle class="fill-black dark:fill-card-dark stroke-primary" cx="32" cy="30" r="1.5" stroke-width="1"></circle>
+<circle class="fill-black dark:fill-card-dark stroke-primary" cx="48" cy="15" r="1.5" stroke-width="1"></circle>
+<circle class="fill-black dark:fill-card-dark stroke-primary" cx="64" cy="20" r="1.5" stroke-width="1"></circle>
+<circle class="fill-black dark:fill-card-dark stroke-primary" cx="80" cy="10" r="1.5" stroke-width="1"></circle>
+<circle class="fill-black dark:fill-card-dark stroke-primary" cx="100" cy="25" r="1.5" stroke-width="1"></circle>
+</svg>
+</div>
+<!-- X-Axis Labels -->
+<div class="flex justify-between pl-6 text-xs text-gray-500 dark:text-gray-400 font-medium mt-1">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+<span>Sun</span>
+</div>
+</div>
+<!-- Summary Stats -->
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-white dark:bg-card-dark p-4 rounded-xl border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center text-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-primary text-2xl mb-1">bedtime</span>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Goal</p>
+<p class="text-black dark:text-white font-bold text-lg">8h 00m</p>
+</div>
+<div class="bg-white dark:bg-card-dark p-4 rounded-xl border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center text-center gap-1 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-2 h-2 rounded-full bg-accent-orange m-2"></div>
+<span class="material-symbols-outlined text-accent-orange text-2xl mb-1">timelapse</span>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Debt</p>
+<p class="text-black dark:text-white font-bold text-lg">+45m</p>
+</div>
+<div class="bg-white dark:bg-card-dark p-4 rounded-xl border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center text-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-accent-green text-2xl mb-1">temp_preferences_custom</span>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Quality</p>
+<p class="text-black dark:text-white font-bold text-lg">85%</p>
+</div>
+</div>
+<!-- AI Insight Card -->
+<div class="w-full bg-gradient-to-br from-gray-900 to-black dark:from-[#233036] dark:to-card-dark rounded-xl p-5 border border-gray-200 dark:border-gray-700 shadow-sm relative overflow-hidden group">
+<!-- Decorative glow -->
+<div class="absolute top-0 right-0 -mr-10 -mt-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-all duration-500"></div>
+<div class="flex gap-4 items-start relative z-10">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-background-dark">auto_awesome</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center w-full">
+<p class="text-primary font-bold text-sm uppercase tracking-wider">AI Insight</p>
+<span class="text-xs text-gray-400 bg-white/5 px-2 py-0.5 rounded-full">Just now</span>
+</div>
+<p class="text-white text-base leading-relaxed font-medium">Based on your activity today, your ideal bedtime is <span class="text-primary font-bold">10:45 PM</span>.</p>
+<p class="text-gray-400 text-sm">You had a late dinner. Try a lighter meal like <span class="text-white font-medium">Dal Khichdi</span> next time for better digestion before sleep.</p>
+</div>
+</div>
+</div>
+<!-- Sleep Stages Breakdown -->
+<div class="w-full bg-white dark:bg-card-dark rounded-xl p-5 border border-gray-100 dark:border-gray-800 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-bold text-black dark:text-white">Sleep Stages</h3>
+<span class="material-symbols-outlined text-gray-400 text-sm">info</span>
+</div>
+<!-- Stacked Bar -->
+<div class="flex w-full h-4 rounded-full overflow-hidden mb-4">
+<div class="bg-[#4d7cff] h-full" style="width: 20%"></div> <!-- Deep -->
+<div class="bg-primary h-full" style="width: 55%"></div> <!-- Light -->
+<div class="bg-[#a5f3fc] h-full" style="width: 25%"></div> <!-- REM -->
+</div>
+<!-- Legend -->
+<div class="flex justify-between text-sm">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#4d7cff]"></div>
+<span class="text-gray-500 dark:text-gray-400">Deep</span>
+</div>
+<span class="font-bold text-black dark:text-white ml-4">1h 15m</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-gray-500 dark:text-gray-400">Light</span>
+</div>
+<span class="font-bold text-black dark:text-white ml-4">4h 12m</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#a5f3fc]"></div>
+<span class="text-gray-500 dark:text-gray-400">REM</span>
+</div>
+<span class="font-bold text-black dark:text-white ml-4">1h 45m</span>
+</div>
+</div>
+</div>
+<!-- Tip Card -->
+<div class="w-full bg-white dark:bg-card-dark rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm flex items-center">
+<div class="w-24 h-24 bg-gray-200 dark:bg-gray-800 shrink-0" data-alt="Abstract calming blue and purple gradient pattern representing relaxation" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfgPs8sjK-tFVg-Zok5uOm3bpBQjVKigcNjo2WkWqc6iNFQPiwBVPSMsP24rf0cxF_Z9roSbUJe84iLdsLIC7ys_X3QESw4aVrsB-kNe7Z3bZrVXnD_sdU6IPlr85vFe8rAAYh5X2vWaaevnNoByS6AreApai2yIroKKo12motjcBqH2wuuO3SQjFW73SJ9kb9b1pLrrLRx1daPKagkzJ58ZVdBzd74RXnK91hSzn5egKRnUCLWZy6WetNsjPyJiqjv6qfonoPg7Q'); background-size: cover; background-position: center;"></div>
+<div class="p-4 flex flex-col gap-1">
+<p class="text-xs font-bold text-primary uppercase tracking-wider">Quick Tip</p>
+<p class="text-sm text-black dark:text-white font-medium leading-snug">Avoid caffeine after 4 PM to improve your deep sleep cycles tonight.</p>
+</div>
+<button class="mr-4 w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-gray-500 text-lg">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Floating Action Button Area -->
+<div class="fixed bottom-6 left-0 right-0 flex justify-center z-20 px-4 pointer-events-none">
+<button class="pointer-events-auto shadow-[0_8px_30px_rgb(37,192,244,0.4)] bg-primary hover:bg-[#1db0e0] text-background-dark font-bold text-base py-4 px-8 rounded-full flex items-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined">add_circle</span>
+                Log Last Night's Sleep
+            </button>
+</div>
+</div>
+</body></html>

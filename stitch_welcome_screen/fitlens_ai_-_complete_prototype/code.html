@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLens AI - Complete Prototype</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Theme Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#794dff",
+                        "primary-diet": "#25f4a3",
+                        "primary-mot": "#8b5cf6",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#140f23",
+                        "surface-dark": "#1e1b27",
+                        "surface-light": "#ffffff",
+                        "neon-pink": "#ff00cc",
+                        "neon-blue": "#0055ff",
+                        "card-dark": "#1f1a30",
+                        "bubble-user": "#283539",
+                        "bubble-ai": "#1c2a30",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "heading": ["Poppins", "sans-serif"],
+                        "mono": ["Space Grotesk", "monospace"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scan': 'scan 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        scan: {
+                            '0%': { top: '0%', opacity: '0' },
+                            '15%': { opacity: '1' },
+                            '85%': { opacity: '1' },
+                            '100%': { top: '100%', opacity: '0' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <!-- React Libraries -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/history@5/umd/history.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-router@6.3.0/umd/react-router.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-router-dom@6.3.0/umd/react-router-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+        /* Global Styles */
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .bg-vibrant-gradient {
+            background: radial-gradient(circle at 0% 0%, #0055ff 0%, transparent 50%), 
+                        radial-gradient(circle at 100% 0%, #794dff 0%, transparent 50%), 
+                        radial-gradient(circle at 100% 100%, #ff00cc 0%, transparent 50%),
+                        radial-gradient(circle at 0% 100%, #140f23 0%, #140f23 100%);
+            background-color: #140f23;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+        const { MemoryRouter, Routes, Route, Link, useNavigate, useLocation } = ReactRouterDOM;
+
+        // --- Shared Components ---
+
+        const BackButton = () => {
+            const navigate = useNavigate();
+            return (
+                <button onClick={() => navigate(-1)} className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10 transition-colors text-white">
+                    <span className="material-symbols-outlined text-2xl">arrow_back</span>
+                </button>
+            );
+        };
+
+        const BottomNav = () => {
+            const navigate = useNavigate();
+            const location = useLocation();
+            
+            const getActive = (path) => location.pathname === path ? 'text-primary' : 'text-gray-500 dark:text-gray-400';
+
+            return (
+                <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+                    <nav className="bg-surface-light/90 dark:bg-[#1a2c32]/90 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 flex items-center justify-between gap-6 pointer-events-auto w-full max-w-sm">
+                        <button onClick={() => navigate('/dashboard')} className={`flex flex-col items-center gap-1 ${getActive('/dashboard')}`}>
+                            <span className="material-symbols-outlined text-2xl">home</span>
+                        </button>
+                        <button onClick={() => navigate('/habits')} className={`flex flex-col items-center gap-1 ${getActive('/habits')}`}>
+                            <span className="material-symbols-outlined text-2xl">check_box</span>
+                        </button>
+                        
+                        <button onClick={() => navigate('/camera')} className="relative -top-6 bg-primary text-white rounded-full p-4 shadow-[0_0_15px_rgba(121,77,255,0.5)] hover:scale-105 transition-transform">
+                            <span className="material-symbols-outlined text-3xl">qr_code_scanner</span>
+                        </button>
+                        
+                        <button onClick={() => navigate('/analysis')} className={`flex flex-col items-center gap-1 ${getActive('/analysis')}`}>
+                            <span className="material-symbols-outlined text-2xl">bar_chart</span>
+                        </button>
+                        <button onClick={() => navigate('/profile')} className={`flex flex-col items-center gap-1 ${getActive('/profile')}`}>
+                            <span className="material-symbols-outlined text-2xl">person</span>
+                        </button>
+                    </nav>
+                </div>
+            );
+        };
+
+        // --- Screens ---
+
+        const Welcome = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="relative flex h-screen w-full flex-col overflow-hidden bg-vibrant-gradient">
+                    <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-neon-blue/20 rounded-full blur-[100px] pointer-events-none"></div>
+                    <div className="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] bg-neon-pink/20 rounded-full blur-[100px] pointer-events-none"></div>
+                    
+                    <div className="flex-1 flex flex-col justify-center items-center px-6 relative z-10">
+                        <div className="mb-8 animate-float">
+                            <div className="relative w-28 h-28 flex items-center justify-center">
+                                <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue to-neon-pink rounded-full blur-xl opacity-60 animate-pulse-slow"></div>
+                                <div className="relative w-full h-full bg-background-dark/80 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/10 shadow-2xl">
+                                    <span className="material-symbols-outlined text-5xl text-transparent bg-clip-text bg-gradient-to-br from-white to-white/70">health_and_safety</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="text-center space-y-3">
+                            <h1 className="font-heading text-4xl font-bold text-white">FitLens AI</h1>
+                            <p className="text-lg text-white/80 font-medium max-w-[280px]">Your AI-powered fitness companion</p>
+                        </div>
+                    </div>
+                    
+                    <div className="relative z-10 w-full px-6 pb-10">
+                        <button onClick={() => navigate('/onboarding/1')} className="relative w-full group cursor-pointer overflow-hidden rounded-full p-[1px]">
+                            <div className="absolute inset-0 bg-gradient-to-r from-neon-blue via-primary to-neon-pink opacity-100"></div>
+                            <div className="relative flex h-14 items-center justify-center bg-primary rounded-full w-full">
+                                <span className="text-white text-[17px] font-semibold">Get Started</span>
+                                <span className="material-symbols-outlined ml-2 text-xl text-white">arrow_forward</span>
+                            </div>
+                        </button>
+                        <div className="text-center mt-6">
+                            <p className="text-white/60 text-sm font-medium">Already have an account? <Link to="/login" className="text-white hover:text-primary underline">Log in</Link></p>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const OnboardingFood = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="relative flex h-screen w-full flex-col bg-background-dark overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-[65%] z-0 bg-cover bg-center" style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAyaYAVEIheAxHMcTvFA6J443v1gIySIjD759NsC3E980iQC2W45smlQBdmkfHmTSeQ5QPXEGQ900hv4P-GM92Zk80f0LaU6FMQgVZYvQVoQjsmu0cC-13T-WkLY7NioiwKaEWlLzSQnm4NZ6lFXNvmp1nneYBCc6QBSf2Qsn6kPBqsVImS8AJId6crefMvihNobCWQM0nupsp94UwhlgzeWiGwOTRBiIcw6jT4KSouXXNoZ0KMiwUxo-BY7rtAY-lIIsO8UObQ2wQ")'}}>
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-background-dark"></div>
+                    </div>
+                    
+                    <div className="absolute top-[40%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
+                        <div className="relative bg-background-dark/80 backdrop-blur-md border border-primary/50 text-white rounded-full p-2 pr-4 flex items-center gap-3">
+                            <div className="h-10 w-10 bg-primary rounded-full flex items-center justify-center"><span className="material-symbols-outlined">restaurant</span></div>
+                            <div><span className="text-xs font-bold block">Lentils & Veggies</span><span className="text-[10px] text-gray-300">320 kcal</span></div>
+                        </div>
+                    </div>
+
+                    <div className="absolute bottom-0 w-full z-10 flex flex-col justify-end bg-background-dark rounded-t-[2.5rem] px-8 pb-10 pt-8">
+                        <h1 className="text-white text-3xl font-extrabold mb-4">Instant Food<br/>Recognition</h1>
+                        <p className="text-gray-400 text-base mb-10">Point your camera at any meal and get instant breakdown of calories.</p>
+                        <div className="flex items-center justify-between">
+                            <div className="flex gap-2">
+                                <div className="w-8 h-2 bg-primary rounded-full"></div>
+                                <div className="w-2 h-2 bg-white/20 rounded-full"></div>
+                                <div className="w-2 h-2 bg-white/20 rounded-full"></div>
+                            </div>
+                            <button onClick={() => navigate('/onboarding/2')} className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white"><span className="material-symbols-outlined">arrow_forward</span></button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const OnboardingCoach = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="relative flex h-screen w-full flex-col bg-background-dark overflow-hidden">
+                    <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBNd-ZdtpwG5wp4Bevwc95Uxo9yjxpKWqcAktpelaaMbr_8s4gIvCG0leVYYm8buEDhZ-4I6KJ1nTiy0OpFY_A31fCmGr0pGMjME7Xm2Z_Gig117rrC8U9icgmKacxlAMpeTpRDMVcG7jcm9XQ1Y6nS-F0MrOlzkuS4k7nx7vlZAGp6IGRcyk9XbDIU34lncWVlckgmDP02j0cuIWDfP1LkcMj5I-zoT1Xdx0OdbFS_94IaWz3wgZkxSR1EROyBcDZifXUpOmhM_Qc")'}}>
+                        <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-black/30"></div>
+                    </div>
+                    
+                    <div className="absolute bottom-0 w-full z-10 px-4 pb-8">
+                        <div className="bg-surface-dark/95 backdrop-blur-xl border border-white/10 p-8 rounded-[2.5rem]">
+                            <div className="inline-flex items-center gap-1 rounded-full bg-primary/15 px-3 py-1 text-primary mb-4">
+                                <span className="material-symbols-outlined text-sm">bolt</span>
+                                <span className="text-xs font-bold uppercase">AI Powered</span>
+                            </div>
+                            <h1 className="text-3xl font-extrabold text-white mb-3">Your Personal <span className="text-primary">AI Coach</span></h1>
+                            <p className="text-gray-400 text-base mb-6">Real-time feedback on your form and personalized workout plans.</p>
+                            
+                            <div className="flex items-center justify-between">
+                                <div className="flex gap-2">
+                                    <div className="w-2 h-2 bg-white/20 rounded-full"></div>
+                                    <div className="w-8 h-2 bg-primary rounded-full"></div>
+                                    <div className="w-2 h-2 bg-white/20 rounded-full"></div>
+                                </div>
+                                <button onClick={() => navigate('/onboarding/3')} className="bg-primary text-white px-6 py-3 rounded-full font-bold flex items-center gap-2">
+                                    Continue <span className="material-symbols-outlined text-lg">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const OnboardingActivity = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="relative flex h-screen w-full flex-col bg-background-dark overflow-hidden">
+                    <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4kkBpThscKyliVjLRxuob-VA2oDBTLgLqCWySexGTVsCdWgXo2eaikRdGjhGIRYD8mSmg-kWcdxslc2jcSOToyXLJWKlmu0ifFuqHNx3QBglFYnLdbMQxDVs7VWEGVnp33UOIEB0AE2gkr9hJ9Vd969HUht93gscRhkZhb1waaW4JtLwCyMNWRTY6gy40B-Gg_M8XFgs7vFSiLKGYp67iL1i8-uPhLuZ-HBausCpbgA9I9yCDa7CwjPaVJXJa00sMRuPR1ykE7T8")'}}>
+                        <div className="absolute inset-0 bg-black/40"></div>
+                    </div>
+                    
+                    <div className="relative z-10 mt-auto flex w-full flex-col items-center p-4 pb-6">
+                        <div className="w-full bg-background-dark rounded-xl p-6 pt-14 relative shadow-2xl">
+                            <div className="absolute -top-10 left-1/2 -translate-x-1/2">
+                                <div className="h-20 w-20 flex items-center justify-center rounded-full bg-primary ring-8 ring-background-dark">
+                                    <span className="material-symbols-outlined text-4xl text-white">footprint</span>
+                                </div>
+                            </div>
+                            
+                            <div className="text-center mt-2">
+                                <h1 className="text-3xl font-extrabold text-white mb-2">Move More, <br/><span className="text-primary">Stress Less</span></h1>
+                                <p className="text-gray-400 mb-8">Auto-log your daily walks and runs. Hit your goals.</p>
+                                
+                                <button onClick={() => navigate('/permissions')} className="w-full bg-primary h-14 rounded-full text-white font-bold flex items-center justify-center gap-2">
+                                    Let's Start <span className="material-symbols-outlined">arrow_forward</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Permissions = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="bg-background-dark min-h-screen flex flex-col">
+                    <div className="relative w-full h-64 bg-cover bg-center rounded-b-3xl shrink-0" style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPx3XE49kCR04eAZxj4S-cntyOPGTZEMnO0SqM3YrPcmqbL_aKLwnM3fCbtlbtadwRqrUre-C7sACJN7by4f7pFPRldptzLa9TPKE6geKScGKYY5orpErUVukOFFsZ-OXxPvtlQvTvIk0PcuxipEjRPQC58sXbh-F_ZEMyma2EDPls3gevJXsuRnJOZ06nWtcU2DORQA3fs3ABwtbSqjrgfn-YTewXQwv0SXXXgkhHixOlZEf4--wYK6OX4mhnZe2aWv2XyOq8iZI")'}}>
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background-dark"></div>
+                    </div>
+                    
+                    <div className="px-6 -mt-8 relative z-10 flex-1 flex flex-col">
+                        <h1 className="text-3xl font-bold text-white mb-2">Power up your <span className="text-primary">AI Coach</span></h1>
+                        <p className="text-gray-400 text-sm mb-8">We need access to a few sensors to help you track.</p>
+                        
+                        <div className="space-y-6 flex-1">
+                            {['Camera Access', 'Motion & Fitness', 'Photos', 'Notifications'].map((perm, i) => (
+                                <div key={i} className="flex gap-4 items-start">
+                                    <div className="h-12 w-12 rounded-full bg-surface-dark border border-white/10 flex items-center justify-center text-primary shrink-0">
+                                        <span className="material-symbols-outlined">{['photo_camera', 'directions_run', 'photo_library', 'notifications'][i]}</span>
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="flex justify-between items-center mb-1">
+                                            <h3 className="text-white font-semibold">{perm}</h3>
+                                            <div className="w-10 h-6 bg-primary rounded-full relative"><div className="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div></div>
+                                        </div>
+                                        <p className="text-xs text-gray-500">Required for full functionality.</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        
+                        <div className="py-6">
+                            <button onClick={() => navigate('/login')} className="w-full h-14 bg-primary rounded-full text-white font-bold flex items-center justify-center gap-2">
+                                Allow All <span className="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                            <button onClick={() => navigate('/login')} className="w-full py-4 text-gray-500 text-sm font-medium">Maybe later</button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Login = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="bg-background-dark min-h-screen flex items-center justify-center relative overflow-hidden p-4">
+                    <div className="absolute inset-0 bg-cover bg-center blur-sm opacity-40" style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuC5POvqOh8zIYdbb48MQG7Sa4UmGiQvu9DYS1ZYh7GoVrTCV83LwFDfRrkHpsxR-dOd6k6g-COsdQy0QqoCcy0WjskuILOTZWPdXHW2nhq_U7lWHG7U-KaQwE7q54zuGrJS5NHZrE7FIDmMUaHJ7fNtcd_JHPwQrEo0CwrXRKochwBTA6B5ijA4Uj3szEj01Ijh5toeSaobSAG-tooG8h28e0LYHqfD-ofvvb3r4pcpBsDiaSrWfL3UqdGWTlnisqDue7JLWl0TDgA")'}}></div>
+                    
+                    <div className="bg-surface-dark/80 backdrop-blur-xl border border-white/10 p-8 rounded-2xl w-full max-w-md relative z-10 shadow-2xl">
+                        <h1 className="text-3xl font-bold text-white text-center mb-2">Welcome Back</h1>
+                        <p className="text-gray-400 text-center text-sm mb-8">Let's hit those goals today.</p>
+                        
+                        <div className="space-y-4">
+                            <div className="relative">
+                                <span className="material-symbols-outlined absolute left-4 top-3.5 text-gray-500">mail</span>
+                                <input type="text" placeholder="Email" className="w-full bg-background-dark border-transparent focus:border-primary rounded-xl py-3.5 pl-12 text-white placeholder-gray-500"/>
+                            </div>
+                            <div className="relative">
+                                <span className="material-symbols-outlined absolute left-4 top-3.5 text-gray-500">lock</span>
+                                <input type="password" placeholder="Password" className="w-full bg-background-dark border-transparent focus:border-primary rounded-xl py-3.5 pl-12 text-white placeholder-gray-500"/>
+                            </div>
+                            <div className="text-right"><a href="#" className="text-sm text-primary">Forgot Password?</a></div>
+                            
+                            <button onClick={() => navigate('/dashboard')} className="w-full bg-primary h-12 rounded-xl text-white font-bold flex items-center justify-center gap-2">
+                                Login <span className="material-symbols-outlined">arrow_forward</span>
+                            </button>
+                            
+                            <div className="flex items-center gap-4 py-2">
+                                <div className="h-px bg-white/10 flex-1"></div>
+                                <span className="text-xs text-gray-500 uppercase">Or</span>
+                                <div className="h-px bg-white/10 flex-1"></div>
+                            </div>
+                            
+                            <button onClick={() => navigate('/signup')} className="w-full bg-white text-black h-12 rounded-xl font-bold">Continue with Google</button>
+                            
+                            <p className="text-center text-sm text-gray-400 mt-4">New here? <Link to="/signup" className="text-primary font-bold">Create Account</Link></p>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Signup = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="bg-background-dark min-h-screen p-6 flex flex-col">
+                    <BackButton />
+                    <div className="mt-6 mb-8">
+                        <h1 className="text-3xl font-bold text-white mb-2">Unlock Your <br/>AI Coach</h1>
+                        <p className="text-gray-400 text-sm">Smart fitness & diet tracking for students.</p>
+                    </div>
+                    
+                    <div className="space-y-5 flex-1">
+                        <div className="space-y-1">
+                            <label className="text-xs font-bold text-gray-500 uppercase ml-4">Full Name</label>
+                            <input type="text" placeholder="Rahul Sharma" className="w-full bg-surface-dark border-transparent rounded-full px-6 h-14 text-white"/>
+                        </div>
+                        <div className="space-y-1">
+                            <label className="text-xs font-bold text-gray-500 uppercase ml-4">Email</label>
+                            <input type="email" placeholder="name@university.edu" className="w-full bg-surface-dark border-transparent rounded-full px-6 h-14 text-white"/>
+                        </div>
+                        <div className="space-y-1">
+                            <label className="text-xs font-bold text-gray-500 uppercase ml-4">Password</label>
+                            <input type="password" value="pass123" className="w-full bg-surface-dark border-transparent rounded-full px-6 h-14 text-white"/>
+                        </div>
+                        
+                        <div className="flex gap-1 px-4">
+                            <div className="h-1 flex-1 bg-green-500 rounded-full"></div>
+                            <div className="h-1 flex-1 bg-green-500 rounded-full"></div>
+                            <div className="h-1 flex-1 bg-gray-700 rounded-full"></div>
+                        </div>
+                    </div>
+                    
+                    <button onClick={() => navigate('/setup/1')} className="w-full bg-primary h-14 rounded-full text-white font-bold flex items-center justify-center gap-2 mt-8">
+                        Create Account <span className="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </div>
+            );
+        };
+
+        const SetupSteps = ({ step, title, children, nextPath }) => {
+            const navigate = useNavigate();
+            return (
+                <div className="bg-background-dark min-h-screen flex flex-col p-6">
+                    <div className="flex items-center justify-between mb-6">
+                        <BackButton />
+                        <div className="flex gap-2">
+                            {[1,2,3,4,5].map(i => <div key={i} className={`h-1.5 w-8 rounded-full ${i <= step ? 'bg-primary' : 'bg-surface-dark'}`}></div>)}
+                        </div>
+                    </div>
+                    <h1 className="text-3xl font-bold text-white mb-6 text-center">{title}</h1>
+                    <div className="flex-1 flex flex-col items-center justify-center w-full max-w-sm mx-auto gap-6">
+                        {children}
+                    </div>
+                    <button onClick={() => navigate(nextPath)} className="w-full bg-primary h-14 rounded-full text-white font-bold flex items-center justify-center gap-2 mt-auto">
+                        Continue <span className="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                </div>
+            );
+        }
+
+        const SetupHeightWeight = () => <SetupSteps step={1} title="Let's get to know you" nextPath="/setup/2">
+            <div className="bg-surface-dark p-6 rounded-2xl w-full">
+                <div className="flex justify-between mb-4"><span className="text-white font-bold">Height</span><span className="text-primary font-bold">CM</span></div>
+                <div className="flex justify-center items-baseline gap-1 mb-4"><span className="text-5xl font-bold text-white">175</span><span className="text-gray-500">cm</span></div>
+                <input type="range" className="w-full accent-primary" />
+            </div>
+            <div className="bg-surface-dark p-6 rounded-2xl w-full">
+                <div className="flex justify-between mb-4"><span className="text-white font-bold">Weight</span><span className="text-primary font-bold">KG</span></div>
+                <div className="flex justify-center items-baseline gap-1 mb-4"><span className="text-5xl font-bold text-white">70.5</span><span className="text-gray-500">kg</span></div>
+                <input type="range" className="w-full accent-primary" />
+            </div>
+        </SetupSteps>;
+
+        const SetupDiet = () => <SetupSteps step={2} title="Dietary Preference" nextPath="/setup/3">
+            <div className="space-y-3 w-full">
+                {['Vegetarian', 'Non-Vegetarian', 'Vegan', 'Jain'].map((opt, i) => (
+                    <div key={i} className={`p-4 rounded-xl border flex justify-between items-center cursor-pointer ${i===0 ? 'border-primary bg-primary/10' : 'border-white/10 bg-surface-dark'}`}>
+                        <div className="flex items-center gap-3">
+                            <span className="material-symbols-outlined text-gray-400">restaurant</span>
+                            <span className="text-white font-semibold">{opt}</span>
+                        </div>
+                        {i===0 && <span className="material-symbols-outlined text-primary">check_circle</span>}
+                    </div>
+                ))}
+            </div>
+        </SetupSteps>;
+
+        const Dashboard = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="bg-background-dark min-h-screen pb-24 font-display text-white">
+                    <header className="flex justify-between items-center p-6 bg-surface-dark/50 backdrop-blur-md sticky top-0 z-20">
+                        <div>
+                            <p className="text-gray-400 text-sm">Good Morning,</p>
+                            <h1 className="text-2xl font-bold">Rahul 👋</h1>
+                        </div>
+                        <div onClick={() => navigate('/profile')} className="size-10 rounded-full bg-gray-700 overflow-hidden border-2 border-primary cursor-pointer">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3ByuvJf1BKy2_uvBrdjv7GYpzZk3_Nm3j1Xde78eHtF-nZgehxD1nKrcMKjSKg_xNhJ2Mqdb4mqdm3PmKnQYMvI4yjbJoDHK0ZgrrjRls-NU9VvmDdIEEUNXXTEF80GdSWK75mXGq4IMFFjpbh1jVUYpBlZ7qiF66O5NaEvKN5wqSSAHCWO9mTzCxYOswb1tqT5Iv7GVpUt8B0kzQsVS7TmEzTevJB1WNxZCRrzzcBaHPgEO0WsgwEqOxrJOxZBtYTfcLJ1dhIZ0" className="w-full h-full object-cover"/>
+                        </div>
+                    </header>
+
+                    <div className="px-6 py-4">
+                        <div className="grid grid-cols-2 gap-4 mb-6">
+                            <div onClick={() => navigate('/activity/steps')} className="bg-surface-dark p-4 rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-white/5 transition">
+                                <div className="relative size-16">
+                                    <svg className="size-full -rotate-90" viewBox="0 0 36 36">
+                                        <path className="text-gray-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3"/>
+                                        <path className="text-green-400" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeDasharray="75, 100" strokeWidth="3"/>
+                                    </svg>
+                                    <span className="material-symbols-outlined absolute inset-0 m-auto text-green-400 flex items-center justify-center">footprint</span>
+                                </div>
+                                <div className="text-center">
+                                    <span className="block text-xl font-bold">8,432</span>
+                                    <span className="text-xs text-gray-400">Steps</span>
+                                </div>
+                            </div>
+                            <div className="bg-surface-dark p-4 rounded-2xl flex flex-col items-center justify-center gap-2">
+                                <div className="relative size-16">
+                                    <svg className="size-full -rotate-90" viewBox="0 0 36 36">
+                                        <path className="text-gray-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3"/>
+                                        <path className="text-orange-400" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeDasharray="60, 100" strokeWidth="3"/>
+                                    </svg>
+                                    <span className="material-symbols-outlined absolute inset-0 m-auto text-orange-400 flex items-center justify-center">local_fire_department</span>
+                                </div>
+                                <div className="text-center">
+                                    <span className="block text-xl font-bold">1,200</span>
+                                    <span className="text-xs text-gray-400">Cal In</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-4 overflow-x-auto no-scrollbar mb-6">
+                            <button onClick={() => navigate('/camera')} className="flex items-center gap-2 bg-surface-dark px-4 py-2 rounded-full border border-white/10 whitespace-nowrap">
+                                <span className="material-symbols-outlined text-primary">photo_camera</span> Log Meal
+                            </button>
+                            <button onClick={() => navigate('/activity/run')} className="flex items-center gap-2 bg-surface-dark px-4 py-2 rounded-full border border-white/10 whitespace-nowrap">
+                                <span className="material-symbols-outlined text-green-400">directions_run</span> Start Run
+                            </button>
+                            <button onClick={() => navigate('/fasting/timer')} className="flex items-center gap-2 bg-surface-dark px-4 py-2 rounded-full border border-white/10 whitespace-nowrap">
+                                <span className="material-symbols-outlined text-orange-400">timer</span> Fasting
+                            </button>
+                        </div>
+
+                        <div onClick={() => navigate('/ai/chat')} className="bg-gradient-to-br from-[#1a2c32] to-[#0f171a] p-5 rounded-2xl border border-gray-800 relative overflow-hidden cursor-pointer">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
+                            <div className="relative z-10 flex gap-4">
+                                <div className="bg-primary/20 p-2 rounded-full h-10 w-10 flex items-center justify-center text-primary"><span className="material-symbols-outlined">auto_awesome</span></div>
+                                <div>
+                                    <h3 className="font-bold text-lg mb-1">AI Insight</h3>
+                                    <p className="text-gray-300 text-sm">You're under calories. Consider a banana snack before your walk.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <BottomNav />
+                </div>
+            );
+        };
+
+        const Camera = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="h-screen bg-black relative flex flex-col">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM6_0fpYgqCVCgHyk6tNSBLOTACbdlGmcfmU9HeMM63Y2R474h_9SGSq6lBEhUO4Cwhnj4T2xJaETKcENY2Kueof6m5n89pp3PeGtV3v5bsb3-Jp6js4pMsjcWPoZrQEwr5eqvznJUUXIvLR-RJHBCAff-seRI0sj_EBJzPk5-FvgvLbfJny_1ZoC6s3NGhJoT52y_AVIefcgGPAn4EsPCqIF2DrNyeZnqwwm9fYSUdSiITfHEsw5_No9LRBBtyuePwsAvqWzaUY0" className="absolute inset-0 w-full h-full object-cover opacity-60"/>
+                    
+                    <div className="relative z-10 flex justify-between p-4 pt-8">
+                        <button onClick={() => navigate(-1)} className="w-10 h-10 bg-black/40 rounded-full flex items-center justify-center text-white backdrop-blur"><span className="material-symbols-outlined">arrow_back</span></button>
+                        <span className="text-white font-bold bg-black/40 px-3 py-1 rounded-full backdrop-blur">Scan Meal</span>
+                        <div className="w-10"></div>
+                    </div>
+
+                    <div className="flex-1 flex items-center justify-center relative">
+                        <div className="w-64 h-64 border-2 border-primary rounded-3xl relative">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-primary shadow-[0_0_20px_#25c0f4] animate-scan"></div>
+                            <div className="absolute -bottom-12 left-0 right-0 text-center">
+                                <div className="inline-flex items-center gap-2 bg-black/50 backdrop-blur px-4 py-2 rounded-full text-white">
+                                    <span className="material-symbols-outlined text-primary animate-spin">data_usage</span>
+                                    Scanning...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="relative z-10 p-8 flex justify-center items-center gap-8">
+                        <button className="text-white"><span className="material-symbols-outlined text-3xl">photo_library</span></button>
+                        <button onClick={() => navigate('/food/result')} className="w-20 h-20 border-4 border-white rounded-full flex items-center justify-center"><div className="w-16 h-16 bg-white rounded-full"></div></button>
+                        <button className="text-white"><span className="material-symbols-outlined text-3xl">edit</span></button>
+                    </div>
+                </div>
+            );
+        };
+
+        const FoodResult = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="bg-background-dark min-h-screen text-white flex flex-col">
+                    <div className="h-[40vh] w-full bg-cover bg-center relative" style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuBawcGKLERD03EyXMx8AY18m9DYkAT1pkogisZbNpR-_G879urg66uHlbRN-YB64w9LcFr7vqVbC2Q5BpQc0t1kwEjkyDOpHsXSmOg-vUFWWGBe2SzrB5dQZfb4xvTZt6kDIVWldeGW-eN4sBRTCAPWUmWjmBWlftJ611G-H4I422Qa58fjOpAEBh8XRkKwo5yD_jKlZNC9i9nwRa3hn0Nt53MowPHiSdMjjgXiExAPNXSH48IaRg-jN5zrPqUgH7-ZYgHaUckgYtQ")'}}>
+                        <div className="absolute top-4 left-4"><BackButton/></div>
+                        <div className="absolute bottom-4 right-4 bg-primary text-black text-xs font-bold px-3 py-1 rounded-full">Paneer Tikka Detected</div>
+                    </div>
+                    <div className="flex-1 bg-surface-dark -mt-6 rounded-t-3xl p-6 relative z-10">
+                        <div className="w-12 h-1 bg-gray-600 rounded-full mx-auto mb-6"></div>
+                        <h1 className="text-4xl font-bold text-center mb-1">640 <span className="text-lg text-gray-400">kcal</span></h1>
+                        <p className="text-center text-gray-400 mb-8">Dinner • 78% of goal</p>
+                        
+                        <div className="grid grid-cols-3 gap-3 mb-6">
+                            <div className="bg-background-dark p-3 rounded-xl text-center border border-white/5">
+                                <p className="text-primary font-bold text-xl">24g</p><p className="text-xs text-gray-400">Protein</p>
+                            </div>
+                            <div className="bg-background-dark p-3 rounded-xl text-center border border-white/5">
+                                <p className="text-yellow-400 font-bold text-xl">80g</p><p className="text-xs text-gray-400">Carbs</p>
+                            </div>
+                            <div className="bg-background-dark p-3 rounded-xl text-center border border-white/5">
+                                <p className="text-red-400 font-bold text-xl">18g</p><p className="text-xs text-gray-400">Fat</p>
+                            </div>
+                        </div>
+
+                        <div className="space-y-3">
+                            <div className="flex justify-between items-center p-3 bg-white/5 rounded-xl">
+                                <span>Paneer Tikka</span>
+                                <span className="font-bold">320 kcal</span>
+                            </div>
+                            <div className="flex justify-between items-center p-3 bg-white/5 rounded-xl">
+                                <span>Garlic Naan (2)</span>
+                                <span className="font-bold">280 kcal</span>
+                            </div>
+                        </div>
+
+                        <button onClick={() => navigate('/dashboard')} className="w-full mt-8 bg-primary h-14 rounded-full text-black font-bold text-lg">Log Meal</button>
+                    </div>
+                </div>
+            );
+        };
+
+        const AIChat = () => {
+            return (
+                <div className="flex flex-col h-screen bg-background-dark text-white">
+                    <header className="flex items-center p-4 border-b border-white/10">
+                        <BackButton/>
+                        <div className="ml-3 flex-1">
+                            <h2 className="font-bold">Coach AI</h2>
+                            <p className="text-xs text-primary">Online</p>
+                        </div>
+                    </header>
+                    <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                        <div className="flex gap-3">
+                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">AI</div>
+                            <div className="bg-bubble-ai p-3 rounded-2xl rounded-tl-none max-w-[80%] border border-white/5">
+                                <p className="text-sm">Hey! Ready to hit your macros today? What did you have for lunch?</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-3 justify-end">
+                            <div className="bg-primary text-black p-3 rounded-2xl rounded-tr-none max-w-[80%]">
+                                <p className="text-sm">I just ate 2 chapatis and dal.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-3">
+                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">AI</div>
+                            <div className="bg-bubble-ai p-3 rounded-2xl rounded-tl-none max-w-[80%] border border-white/5">
+                                <p className="text-sm mb-2">Got it. That's roughly 350 calories. Good protein source! 🍲</p>
+                                <p className="text-sm">Want to log a quick 10 min walk?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="p-4 bg-surface-dark">
+                        <div className="flex gap-2 bg-black/20 p-2 rounded-full border border-white/10">
+                            <input type="text" placeholder="Type a message..." className="bg-transparent border-none flex-1 text-sm focus:ring-0 text-white placeholder-gray-500"/>
+                            <button className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-black"><span className="material-symbols-outlined text-sm">send</span></button>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const Profile = () => (
+            <div className="bg-background-dark min-h-screen text-white p-4 pb-24">
+                <div className="flex justify-between items-center mb-6">
+                    <BackButton/>
+                    <h2 className="font-bold text-lg">Profile</h2>
+                    <span className="material-symbols-outlined">settings</span>
+                </div>
+                <div className="flex flex-col items-center mb-8">
+                    <div className="w-24 h-24 rounded-full bg-gray-700 mb-3 overflow-hidden border-2 border-primary">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKsfHOQPZ5PpT8L6-T7R4dJMGj45Mdr5vJ9JXyQ4zHdAR5VImSo0YdaM06mX_7N3emZ9bEVlD4F2J11Af0fiAvChz3vugW5PD3wE9tWTfedPE8QKFMU5oawHMDBCE2E461El33SQtzDKBuuwrZu_K6a0mbsjbuSpYf6X6Cbmmp7TW5TFvZtkyDqSg7w_G7iyhTNaEU2OZEkcsUIg2DWn9Xd1CzikOxujDT2lMF4joLdkBABRE0MB7Qi2IHoQTSn7lSxHjZPT94c10" className="w-full h-full object-cover"/>
+                    </div>
+                    <h3 className="text-2xl font-bold">Rahul</h3>
+                    <div className="bg-surface-dark px-3 py-1 rounded-full text-xs text-gray-400 mt-2 border border-white/10">Level 5 Cardio King</div>
+                </div>
+                
+                <div className="space-y-3">
+                    <div className="bg-surface-dark p-4 rounded-xl flex justify-between items-center">
+                        <span className="flex items-center gap-3"><span className="material-symbols-outlined text-blue-400">person</span> Account Info</span>
+                        <span className="material-symbols-outlined text-gray-500">chevron_right</span>
+                    </div>
+                    <div className="bg-surface-dark p-4 rounded-xl">
+                        <div className="flex justify-between items-center mb-4">
+                            <span className="flex items-center gap-3"><span className="material-symbols-outlined text-primary">psychology</span> AI Config</span>
+                            <span className="material-symbols-outlined text-gray-500">expand_less</span>
+                        </div>
+                        <div className="space-y-4 pl-9">
+                            <div className="flex justify-between items-center">
+                                <span className="text-sm">Indian Cuisine Priority</span>
+                                <div className="w-10 h-5 bg-primary rounded-full relative"><div className="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div></div>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-sm">Strict Vegetarian</span>
+                                <div className="w-10 h-5 bg-gray-700 rounded-full relative"><div className="absolute left-1 top-1 w-3 h-3 bg-white rounded-full"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <BottomNav/>
+            </div>
+        );
+
+        const App = () => {
+            return (
+                <MemoryRouter>
+                    <Routes>
+                        <Route path="/" element={<Welcome />} />
+                        <Route path="/onboarding/1" element={<OnboardingFood />} />
+                        <Route path="/onboarding/2" element={<OnboardingCoach />} />
+                        <Route path="/onboarding/3" element={<OnboardingActivity />} />
+                        <Route path="/permissions" element={<Permissions />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<Signup />} />
+                        <Route path="/setup/1" element={<SetupHeightWeight />} />
+                        <Route path="/setup/2" element={<SetupDiet />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/camera" element={<Camera />} />
+                        <Route path="/food/result" element={<FoodResult />} />
+                        <Route path="/ai/chat" element={<AIChat />} />
+                        <Route path="/profile" element={<Profile />} />
+                        
+                        {/* Fallbacks for navigation to work minimally */}
+                        <Route path="/activity/steps" element={<div className="p-10 text-white bg-background-dark h-screen"><BackButton/> Steps Screen Placeholder</div>} />
+                        <Route path="/activity/run" element={<div className="p-10 text-white bg-background-dark h-screen"><BackButton/> Run Screen Placeholder</div>} />
+                        <Route path="/fasting/timer" element={<div className="p-10 text-white bg-background-dark h-screen"><BackButton/> Fasting Screen Placeholder</div>} />
+                        <Route path="/habits" element={<div className="p-10 text-white bg-background-dark h-screen"><BackButton/> Habits Screen Placeholder</div>} />
+                        <Route path="/analysis" element={<div className="p-10 text-white bg-background-dark h-screen"><BackButton/> Analysis Screen Placeholder</div>} />
+                        <Route path="/setup/3" element={<div className="p-10 text-white bg-background-dark h-screen flex flex-col items-center justify-center"><h1>All Set!</h1><Link to="/dashboard" className="bg-primary px-6 py-3 rounded-full text-white font-bold mt-4">Go to Dashboard</Link></div>} />
+                    </Routes>
+                </MemoryRouter>
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

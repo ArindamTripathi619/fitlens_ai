@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Habit Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25c0f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-dark": "#1a2c32",
+                        "surface-darker": "#152429",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for horizontal scrolling areas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .toggle-checkbox:checked {
+            background-color: #25c0f4;
+            border-color: #25c0f4;
+        }
+        
+        .toggle-checkbox:checked + div {
+            opacity: 1;
+        }
+        
+        /* Smooth transition for hover effects */
+        .habit-card {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .habit-card:active {
+            transform: scale(0.98);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex justify-center w-full">
+<div class="relative flex h-full min-h-screen w-full max-w-md flex-col bg-background-light dark:bg-background-dark overflow-hidden shadow-2xl">
+<!-- Header Section -->
+<header class="flex items-center p-5 justify-between bg-background-light dark:bg-background-dark sticky top-0 z-10">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/30" data-alt="User profile picture of a young student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCykoLuNkGHBUKv1bywUjtVJTgB0x5XSL6kdqraWuM_v6NmLspnOaQjyv8fZA3IJwOtJi_ZndIReOmYi9mVs_1zKhcM0H48RGrUzGHDkAgTcdN_eivh_GppgE1m9SJqoj_C7HOX_tdSR2U4Fr-KjeYm-REAfj6UO8-pO7B5MY6fpEd7-kf8JtjBiX7KLLdAkdL-Yv33KeEPyTUjHLDV4KHPi6f3YT_UOIYVjvRdXdGtwhgZ64ORxUq1WYln5NgIzcxxJMMp4g_7kzk");'>
+</div>
+<div class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-background-dark rounded-full"></div>
+</div>
+<div>
+<h2 class="text-gray-900 dark:text-white text-base font-bold leading-tight">Hi, Rahul</h2>
+<p class="text-gray-500 dark:text-gray-400 text-xs font-medium">Let's hit 100% today!</p>
+</div>
+</div>
+<button class="flex items-center justify-center rounded-full size-10 bg-surface-dark/50 hover:bg-surface-dark text-gray-900 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+</header>
+<!-- Progress Overview -->
+<div class="px-5 pt-2 pb-6">
+<div class="bg-surface-darker dark:bg-surface-dark rounded-3xl p-5 flex flex-col gap-4 shadow-lg border border-white/5 relative overflow-hidden">
+<!-- Decorative background glow -->
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex justify-between items-end relative z-0">
+<div>
+<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">3/5</h1>
+<p class="text-sm text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide">Habits Completed</p>
+</div>
+<div class="size-16 relative flex items-center justify-center">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36">
+<!-- Background Circle -->
+<path class="text-gray-800" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-opacity="0.2" stroke-width="4"></path>
+<!-- Progress Circle (60%) -->
+<path class="text-primary drop-shadow-[0_0_4px_rgba(37,192,244,0.5)]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="60, 100" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<span class="material-symbols-outlined absolute text-primary text-xl">bolt</span>
+</div>
+</div>
+<!-- Weekly Calendar Strip -->
+<div class="flex justify-between mt-2 pt-4 border-t border-white/5">
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="text-[10px] font-bold text-gray-500 group-hover:text-primary transition-colors">M</span>
+<div class="size-8 rounded-full flex items-center justify-center bg-primary text-background-dark font-bold text-sm shadow-[0_0_10px_rgba(37,192,244,0.4)]">12</div>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer opacity-50">
+<span class="text-[10px] font-bold text-gray-500">T</span>
+<div class="size-8 rounded-full flex items-center justify-center bg-transparent border border-gray-700 text-white font-medium text-sm">13</div>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer opacity-50">
+<span class="text-[10px] font-bold text-gray-500">W</span>
+<div class="size-8 rounded-full flex items-center justify-center bg-transparent border border-gray-700 text-white font-medium text-sm">14</div>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer opacity-50">
+<span class="text-[10px] font-bold text-gray-500">T</span>
+<div class="size-8 rounded-full flex items-center justify-center bg-transparent border border-gray-700 text-white font-medium text-sm">15</div>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer opacity-50">
+<span class="text-[10px] font-bold text-gray-500">F</span>
+<div class="size-8 rounded-full flex items-center justify-center bg-transparent border border-gray-700 text-white font-medium text-sm">16</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="px-5 mb-4">
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary px-5 transition-transform active:scale-95 shadow-[0_0_15px_rgba(37,192,244,0.15)]">
+<p class="text-background-dark text-sm font-bold leading-normal">All</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-darker dark:bg-surface-dark border border-white/5 hover:bg-white/5 px-5 transition-all active:scale-95">
+<p class="text-gray-400 dark:text-gray-300 text-sm font-medium leading-normal">Fitness</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-darker dark:bg-surface-dark border border-white/5 hover:bg-white/5 px-5 transition-all active:scale-95">
+<p class="text-gray-400 dark:text-gray-300 text-sm font-medium leading-normal">Diet</p>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-surface-darker dark:bg-surface-dark border border-white/5 hover:bg-white/5 px-5 transition-all active:scale-95">
+<p class="text-gray-400 dark:text-gray-300 text-sm font-medium leading-normal">Mindfulness</p>
+</button>
+</div>
+</div>
+<!-- Habits List -->
+<div class="flex-1 overflow-y-auto px-5 pb-24 space-y-4 no-scrollbar">
+<!-- Habit Card 1: Completed -->
+<div class="habit-card group relative flex items-center justify-between p-4 rounded-3xl bg-surface-darker dark:bg-surface-dark border border-white/5 hover:border-primary/30 shadow-sm">
+<div class="flex items-center gap-4 flex-1">
+<div class="size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-gray-900 dark:text-white font-bold text-lg leading-tight group-hover:text-primary transition-colors">Drink 3L Water</h3>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-[16px] text-orange-500 fill-current" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<p class="text-orange-500 text-xs font-bold uppercase tracking-wider">12 Day Streak</p>
+</div>
+</div>
+</div>
+<!-- Custom Checkbox -->
+<div class="relative flex items-center justify-center">
+<input checked="" class="peer appearance-none size-8 rounded-full border-2 border-gray-600 bg-transparent checked:bg-primary checked:border-primary transition-all cursor-pointer" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-background-dark text-xl pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+</div>
+</div>
+<!-- Habit Card 2: AI Recommended -->
+<div class="habit-card group relative flex items-center justify-between p-4 rounded-3xl bg-surface-darker dark:bg-surface-dark border border-white/5 hover:border-primary/30 shadow-sm">
+<!-- AI Badge -->
+<div class="absolute -top-2 left-6 bg-gradient-to-r from-purple-500 to-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-lg z-10">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span> AI Pick
+                </div>
+<div class="flex items-center gap-4 flex-1">
+<div class="size-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-gray-900 dark:text-white font-bold text-lg leading-tight group-hover:text-purple-400 transition-colors">Log Indian Lunch</h3>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-[16px] text-gray-500">local_fire_department</span>
+<p class="text-gray-500 text-xs font-bold uppercase tracking-wider">2 Day Streak</p>
+</div>
+</div>
+</div>
+<div class="relative flex items-center justify-center">
+<input class="peer appearance-none size-8 rounded-full border-2 border-gray-600 bg-transparent checked:bg-primary checked:border-primary transition-all cursor-pointer hover:border-purple-400" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-background-dark text-xl pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+</div>
+</div>
+<!-- Habit Card 3 -->
+<div class="habit-card group relative flex items-center justify-between p-4 rounded-3xl bg-surface-darker dark:bg-surface-dark border border-white/5 hover:border-primary/30 shadow-sm">
+<div class="flex items-center gap-4 flex-1">
+<div class="size-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+<span class="material-symbols-outlined">directions_walk</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-gray-900 dark:text-white font-bold text-lg leading-tight group-hover:text-green-400 transition-colors">10k Steps</h3>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-[16px] text-orange-500 fill-current" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<p class="text-orange-500 text-xs font-bold uppercase tracking-wider">5 Day Streak</p>
+</div>
+</div>
+</div>
+<div class="relative flex items-center justify-center">
+<input checked="" class="peer appearance-none size-8 rounded-full border-2 border-gray-600 bg-transparent checked:bg-primary checked:border-primary transition-all cursor-pointer" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-background-dark text-xl pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+</div>
+</div>
+<!-- Habit Card 4 -->
+<div class="habit-card group relative flex items-center justify-between p-4 rounded-3xl bg-surface-darker dark:bg-surface-dark border border-white/5 hover:border-primary/30 shadow-sm opacity-60 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-4 flex-1">
+<div class="size-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
+<span class="material-symbols-outlined">book</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-gray-900 dark:text-white font-bold text-lg leading-tight group-hover:text-blue-400 transition-colors">Read 10 Pages</h3>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-[16px] text-gray-500">local_fire_department</span>
+<p class="text-gray-500 text-xs font-bold uppercase tracking-wider">Start Streak</p>
+</div>
+</div>
+</div>
+<div class="relative flex items-center justify-center">
+<input class="peer appearance-none size-8 rounded-full border-2 border-gray-600 bg-transparent checked:bg-primary checked:border-primary transition-all cursor-pointer hover:border-blue-400" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-background-dark text-xl pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+</div>
+</div>
+<!-- Habit Card 5 -->
+<div class="habit-card group relative flex items-center justify-between p-4 rounded-3xl bg-surface-darker dark:bg-surface-dark border border-white/5 hover:border-primary/30 shadow-sm opacity-60 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-4 flex-1">
+<div class="size-12 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400">
+<span class="material-symbols-outlined">self_improvement</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-gray-900 dark:text-white font-bold text-lg leading-tight group-hover:text-pink-400 transition-colors">Meditate 10m</h3>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="material-symbols-outlined text-[16px] text-gray-500">local_fire_department</span>
+<p class="text-gray-500 text-xs font-bold uppercase tracking-wider">Start Streak</p>
+</div>
+</div>
+</div>
+<div class="relative flex items-center justify-center">
+<input class="peer appearance-none size-8 rounded-full border-2 border-gray-600 bg-transparent checked:bg-primary checked:border-primary transition-all cursor-pointer hover:border-pink-400" type="checkbox"/>
+<span class="material-symbols-outlined absolute text-background-dark text-xl pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+</div>
+</div>
+<!-- Add New Prompt -->
+<button class="w-full mt-2 group relative overflow-hidden rounded-3xl p-[1px] focus:outline-none">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/50 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+<div class="relative w-full h-full bg-surface-darker dark:bg-surface-dark rounded-3xl p-4 flex flex-col items-center justify-center border-2 border-dashed border-gray-700 hover:border-primary/50 transition-colors gap-2">
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-3xl">add_circle</span>
+<p class="text-gray-400 font-medium text-sm group-hover:text-white transition-colors">Build a new routine</p>
+</div>
+</button>
+</div>
+<!-- Floating Action Button -->
+<div class="absolute bottom-6 right-6 z-20">
+<button class="flex items-center justify-center size-14 rounded-full bg-primary text-background-dark shadow-[0_0_20px_rgba(37,192,244,0.5)] hover:shadow-[0_0_30px_rgba(37,192,244,0.7)] hover:scale-110 transition-all duration-300">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+</div>
+<!-- Bottom Navigation (Simulated for context) -->
+<div class="absolute bottom-0 w-full bg-surface-dark/95 backdrop-blur-md border-t border-white/5 py-4 px-8 flex justify-between items-center z-10">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined fill-current">grid_view</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined">insights</span>
+</button>
+<div class="w-8"></div> <!-- Spacer for FAB -->
+<button class="flex flex-col items-center gap-1 text-gray-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined">restaurant_menu</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</body></html>

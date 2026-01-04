@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Body Composition Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25c0f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-dark": "#18282d",
+                        "surface-border": "#2a3b40",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "1.5rem", 
+                        "xl": "2rem", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .radar-grid {
+            stroke: #2a3b40;
+            stroke-width: 1;
+            fill: none;
+        }
+        .radar-area {
+            fill: rgba(37, 192, 244, 0.2);
+            stroke: #25c0f4;
+            stroke-width: 2;
+            filter: drop-shadow(0 0 4px rgba(37, 192, 244, 0.5));
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(37, 192, 244, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-white font-display overflow-x-hidden selection:bg-primary/30">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root">
+<!-- TopAppBar -->
+<div class="flex items-center p-4 sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-transparent dark:border-surface-border/30">
+<div class="text-slate-900 dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full active:bg-slate-200 dark:active:bg-surface-border cursor-pointer transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-wide flex-1 text-center uppercase">Analysis Complete</h2>
+<div class="flex size-12 items-center justify-center">
+<button class="flex items-center justify-center rounded-full h-10 w-10 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-surface-border transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 flex flex-col gap-6 p-4">
+<!-- Summary & Radar Chart -->
+<div class="flex flex-col gap-4">
+<div class="flex items-end justify-between px-2">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">Overall Score</p>
+<p class="text-primary text-[42px] font-bold leading-none glow-text">85<span class="text-xl text-slate-500 dark:text-slate-500 font-normal">/100</span></p>
+</div>
+<div class="bg-green-500/10 border border-green-500/20 px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-green-400 text-sm">trending_up</span>
+<span class="text-green-400 text-xs font-bold uppercase tracking-wider">Improving</span>
+</div>
+</div>
+<!-- Radar Chart Visualization -->
+<div class="w-full aspect-[4/3] relative flex items-center justify-center py-4 bg-white dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-surface-border shadow-sm">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent opacity-50"></div>
+<svg class="w-full h-full max-w-[320px]" viewbox="0 0 200 180">
+<!-- Background Pentagons -->
+<!-- Outer -->
+<polygon class="radar-grid opacity-30" points="100,20 180,78 150,160 50,160 20,78"></polygon>
+<!-- Mid -->
+<polygon class="radar-grid opacity-20" points="100,48 156,86 135,138 65,138 44,86"></polygon>
+<!-- Inner -->
+<polygon class="radar-grid opacity-10" points="100,76 132,94 120,116 80,116 68,94"></polygon>
+<!-- Axis Lines -->
+<line class="radar-grid opacity-20" x1="100" x2="100" y1="100" y2="20"></line>
+<line class="radar-grid opacity-20" x1="100" x2="180" y1="100" y2="78"></line>
+<line class="radar-grid opacity-20" x1="100" x2="150" y1="100" y2="160"></line>
+<line class="radar-grid opacity-20" x1="100" x2="50" y1="100" y2="160"></line>
+<line class="radar-grid opacity-20" x1="100" x2="20" y1="100" y2="78"></line>
+<!-- Data Shape (The actual metric) -->
+<polygon class="radar-area" points="100,35 165,82 135,145 60,140 35,85"></polygon>
+<!-- Data Points -->
+<circle class="fill-primary" cx="100" cy="35" r="3"></circle>
+<circle class="fill-primary" cx="165" cy="82" r="3"></circle>
+<circle class="fill-primary" cx="135" cy="145" r="3"></circle>
+<circle class="fill-primary" cx="60" cy="140" r="3"></circle>
+<circle class="fill-primary" cx="35" cy="85" r="3"></circle>
+<!-- Labels -->
+<text class="fill-slate-400 text-[8px] font-bold uppercase tracking-widest" text-anchor="middle" x="100" y="12">Muscle</text>
+<text class="fill-slate-400 text-[8px] font-bold uppercase tracking-widest" text-anchor="start" x="190" y="78">Fat</text>
+<text class="fill-slate-400 text-[8px] font-bold uppercase tracking-widest" text-anchor="middle" x="160" y="172">Water</text>
+<text class="fill-slate-400 text-[8px] font-bold uppercase tracking-widest" text-anchor="middle" x="40" y="172">Bone</text>
+<text class="fill-slate-400 text-[8px] font-bold uppercase tracking-widest" text-anchor="end" x="10" y="78">BMI</text>
+</svg>
+</div>
+</div>
+<!-- Detailed Metrics Grid -->
+<div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold mb-4 px-1">Detailed Metrics</h2>
+<div class="grid grid-cols-2 gap-3">
+<!-- Body Fat -->
+<div class="flex flex-col gap-3 rounded-2xl border border-slate-200 dark:border-surface-border bg-white dark:bg-surface-dark p-4 shadow-sm relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex items-start justify-between z-10">
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Body Fat</span>
+<h3 class="text-slate-900 dark:text-white text-2xl font-bold mt-1">18.2%</h3>
+</div>
+<span class="material-symbols-outlined text-primary">opacity</span>
+</div>
+<div class="flex flex-col gap-1.5 mt-auto z-10">
+<div class="w-full bg-slate-100 dark:bg-surface-border h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[40%] rounded-full shadow-[0_0_8px_rgba(37,192,244,0.6)]"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[10px] text-slate-400 uppercase font-bold">Athletic</span>
+<span class="text-[10px] text-green-500 font-bold">-1.2%</span>
+</div>
+</div>
+</div>
+<!-- Muscle Mass -->
+<div class="flex flex-col gap-3 rounded-2xl border border-slate-200 dark:border-surface-border bg-white dark:bg-surface-dark p-4 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex items-start justify-between z-10">
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Muscle</span>
+<h3 class="text-slate-900 dark:text-white text-2xl font-bold mt-1">58.4<span class="text-sm font-normal text-slate-500 ml-1">kg</span></h3>
+</div>
+<span class="material-symbols-outlined text-primary">fitness_center</span>
+</div>
+<div class="flex flex-col gap-1.5 mt-auto z-10">
+<div class="w-full bg-slate-100 dark:bg-surface-border h-1.5 rounded-full overflow-hidden">
+<div class="bg-yellow-500 h-full w-[65%] rounded-full"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[10px] text-slate-400 uppercase font-bold">Moderate</span>
+<span class="text-[10px] text-yellow-500 font-bold">Low</span>
+</div>
+</div>
+</div>
+<!-- Visceral Fat -->
+<div class="flex flex-col gap-3 rounded-2xl border border-slate-200 dark:border-surface-border bg-white dark:bg-surface-dark p-4 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex items-start justify-between z-10">
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Visceral</span>
+<h3 class="text-slate-900 dark:text-white text-2xl font-bold mt-1">Lvl 4</h3>
+</div>
+<span class="material-symbols-outlined text-primary">monitor_heart</span>
+</div>
+<div class="flex flex-col gap-1.5 mt-auto z-10">
+<div class="w-full bg-slate-100 dark:bg-surface-border h-1.5 rounded-full overflow-hidden">
+<div class="bg-green-500 h-full w-[30%] rounded-full"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[10px] text-slate-400 uppercase font-bold">Healthy</span>
+<span class="text-[10px] text-green-500 font-bold">Optimal</span>
+</div>
+</div>
+</div>
+<!-- Waist-to-Hip -->
+<div class="flex flex-col gap-3 rounded-2xl border border-slate-200 dark:border-surface-border bg-white dark:bg-surface-dark p-4 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex items-start justify-between z-10">
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">W-H Ratio</span>
+<h3 class="text-slate-900 dark:text-white text-2xl font-bold mt-1">0.85</h3>
+</div>
+<span class="material-symbols-outlined text-primary">accessibility_new</span>
+</div>
+<div class="flex flex-col gap-1.5 mt-auto z-10">
+<div class="w-full bg-slate-100 dark:bg-surface-border h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[50%] rounded-full shadow-[0_0_8px_rgba(37,192,244,0.6)]"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-[10px] text-slate-400 uppercase font-bold">Good</span>
+<span class="text-[10px] text-slate-500 font-bold">--</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Insight Action Panel -->
+<div class="@container">
+<div class="flex flex-col gap-4 rounded-2xl border border-primary/30 bg-gradient-to-br from-surface-dark to-[#0f1518] p-5 shadow-[0_0_20px_rgba(37,192,244,0.1)] relative overflow-hidden">
+<!-- Decorative background element -->
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
+<div class="flex items-center gap-3 z-10">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary border border-primary/20 shadow-[0_0_10px_rgba(37,192,244,0.3)]">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<p class="text-white text-base font-bold leading-tight">AI Insight</p>
+</div>
+<div class="flex flex-col gap-2 z-10">
+<p class="text-slate-300 text-sm font-normal leading-relaxed">
+                            Your visceral fat is optimal, but muscle mass is slightly below target. Consider increasing your protein intake with foods like <span class="text-white font-bold">Paneer</span>, <span class="text-white font-bold">Chicken Breast</span>, or <span class="text-white font-bold">Lentils (Dal)</span>.
+                        </p>
+</div>
+<div class="pt-2 z-10">
+<a class="flex items-center justify-between w-full p-3 rounded-xl bg-primary hover:bg-primary/90 transition-colors text-background-dark font-bold text-sm tracking-wide" href="#">
+<span>View Personalized Diet Plan</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<div class="flex justify-center pb-6 opacity-60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-500 text-xs">lock</span>
+<p class="text-[10px] text-slate-500 font-medium uppercase tracking-widest">Data processed locally on device</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

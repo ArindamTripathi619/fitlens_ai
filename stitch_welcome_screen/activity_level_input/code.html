@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Activity Level Input</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6938fa",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#140f23",
+                        "surface-dark": "#1e1833",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2rem",
+                        "2xl": "3rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "glow": "0 0 20px -5px rgba(105, 56, 250, 0.5)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Slider Styling for Webkit */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 4px solid #6938fa;
+            cursor: pointer;
+            margin-top: -12px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: #2D2640;
+            border-radius: 9999px;
+        }
+        
+        /* Custom Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased transition-colors duration-300">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Top Navigation & Progress -->
+<div class="flex flex-col w-full p-6 pb-2 z-10">
+<div class="flex items-center justify-between mb-6">
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-surface-light dark:bg-surface-dark shadow-sm hover:bg-gray-100 dark:hover:bg-[#2a2245] transition-colors group">
+<span class="material-symbols-outlined text-gray-600 dark:text-gray-300 group-hover:text-primary transition-colors" style="font-size: 20px;">arrow_back</span>
+</button>
+<button class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary transition-colors">
+                    Skip
+                </button>
+</div>
+<!-- Segmented Progress Bar -->
+<div class="flex w-full gap-2">
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 flex-1 rounded-full bg-primary"></div>
+<div class="h-1.5 flex-1 rounded-full bg-gray-200 dark:bg-surface-dark"></div>
+<div class="h-1.5 flex-1 rounded-full bg-gray-200 dark:bg-surface-dark"></div>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 flex flex-col w-full overflow-y-auto px-6 pt-2 pb-24 no-scrollbar">
+<!-- Headline Group -->
+<div class="mb-8 mt-2">
+<h1 class="text-3xl font-extrabold tracking-tight mb-3 text-slate-900 dark:text-white">How active are you?</h1>
+<p class="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                    This helps us calculate your daily calorie needs based on your lifestyle.
+                </p>
+</div>
+<!-- Main Interactive Area -->
+<div class="flex-1 flex flex-col justify-center items-center gap-8 min-h-[400px]">
+<!-- Illustration Placeholder (Lottie Area) -->
+<div class="relative w-full aspect-[16/9] flex items-center justify-center mb-4">
+<!-- Circular Background Glow -->
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-full blur-3xl opacity-50 transform scale-75"></div>
+<!-- Character Image -->
+<div class="relative z-10 w-48 h-48 rounded-full bg-surface-dark border-4 border-surface-dark shadow-2xl overflow-hidden flex items-center justify-center">
+<div class="w-full h-full bg-cover bg-center" data-alt="Energetic person jogging outdoors in active wear" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZA_1sBIcFgZtLkoVjYV9MCfhiy76rxJMKGfkzYqCIY1_4l5B7wykntwlqFIykXXRhbKNCgw8IjYHfyCWpvjlZJC2KCIWpPfWJ6QT1RLc-CnUYYVuAdowJ03rrhoQwsqg_PP9vyT4fZRSCEKWDsz9fhwqSz6FC94brRjLeGn6JDGB8fvj-EQq_u3cMWprY4rHBMHTIxZIldiN7xzJXbdQlPZQn7uQQ5rD0rhBQJJpBPOBtFMKrKhiT83QcyIZ5ETCiSirZ2dOk7rA');"></div>
+</div>
+<!-- Badge -->
+<div class="absolute bottom-2 bg-surface-light dark:bg-surface-dark px-4 py-1.5 rounded-full shadow-lg border border-gray-100 dark:border-gray-800 flex items-center gap-2 z-20">
+<span class="material-symbols-outlined text-orange-500 text-lg">local_fire_department</span>
+<span class="text-xs font-bold text-slate-900 dark:text-white">Active</span>
+</div>
+</div>
+<!-- Interactive Chart Slider -->
+<div class="w-full flex flex-col gap-6">
+<!-- Bars Visualization -->
+<div class="flex items-end justify-between h-32 px-4 gap-4">
+<!-- Bar 1: Sedentary -->
+<div class="group flex flex-col items-center gap-2 w-1/4 h-full justify-end cursor-pointer">
+<div class="w-full bg-primary/20 rounded-t-xl transition-all duration-300 h-[30%] group-hover:bg-primary/40"></div>
+</div>
+<!-- Bar 2: Light -->
+<div class="group flex flex-col items-center gap-2 w-1/4 h-full justify-end cursor-pointer">
+<div class="w-full bg-primary/20 rounded-t-xl transition-all duration-300 h-[50%] group-hover:bg-primary/40"></div>
+</div>
+<!-- Bar 3: Moderate (Active) -->
+<div class="flex flex-col items-center gap-2 w-1/4 h-full justify-end">
+<div class="w-full bg-primary shadow-glow rounded-t-xl transition-all duration-300 h-[75%] relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/20 to-transparent"></div>
+</div>
+</div>
+<!-- Bar 4: Very Active -->
+<div class="group flex flex-col items-center gap-2 w-1/4 h-full justify-end cursor-pointer">
+<div class="w-full bg-surface-dark border border-gray-800 rounded-t-xl transition-all duration-300 h-[95%] group-hover:border-gray-600"></div>
+</div>
+</div>
+<!-- Slider Control -->
+<div class="relative w-full px-4 mb-2">
+<!-- Background Track with ticks -->
+<div class="absolute top-1/2 left-4 right-4 h-1.5 bg-surface-dark rounded-full -translate-y-1/2 flex justify-between px-[12.5%] z-0">
+<div class="w-1 h-1 bg-gray-600 rounded-full"></div>
+<div class="w-1 h-1 bg-gray-600 rounded-full"></div>
+<div class="w-1 h-1 bg-gray-600 rounded-full"></div>
+</div>
+<!-- Pseudo Slider (Visual Only for UI Demo) -->
+<div class="relative h-6 w-full z-10">
+<!-- Active Track -->
+<div class="absolute top-1/2 left-0 h-1.5 bg-primary rounded-l-full -translate-y-1/2" style="width: 71%;"></div>
+<!-- Thumb -->
+<div class="absolute top-1/2 h-7 w-7 bg-white rounded-full shadow-lg border-4 border-primary -translate-y-1/2 cursor-grab active:cursor-grabbing flex items-center justify-center" style="left: 69%;">
+<div class="w-1.5 h-1.5 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Dynamic Description Text -->
+<div class="text-center space-y-2 animate-pulse-once">
+<h3 class="text-2xl font-bold text-primary">Moderately Active</h3>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            Moderate exercise or sports 3–5 days a week
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Action Area -->
+<div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark pt-12 z-20">
+<button class="w-full h-14 bg-primary hover:bg-primary/90 active:scale-[0.98] transition-all rounded-full flex items-center justify-center shadow-glow group">
+<span class="text-white font-bold text-lg mr-2">Continue</span>
+<span class="material-symbols-outlined text-white transition-transform group-hover:translate-x-1" style="font-size: 20px;">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Signup Screen</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#6938fa",
+              "background-light": "#f6f5f8",
+              "background-dark": "#140f23",
+              "surface-dark": "#1e1b27",
+              "input-bg": "#2a2438",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "heading": ["Poppins", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-effect {
+            background: rgba(30, 27, 39, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        /* Custom scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #140f23;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2438;
+            border-radius: 3px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white min-h-screen overflow-x-hidden">
+<div class="relative flex flex-col min-h-screen w-full max-w-md mx-auto shadow-2xl overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Abstract Background Shape for "Vibrant" feel -->
+<div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute top-40 -left-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Header / Nav -->
+<div class="flex items-center p-4 pt-6 pb-2 z-10">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/5 text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<div class="flex-1"></div>
+<button class="text-sm font-medium text-white/60 hover:text-white transition-colors">
+                Help
+            </button>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col px-6 pt-2 pb-8 z-10">
+<!-- Headline Group -->
+<div class="mb-8">
+<h1 class="font-heading text-3xl font-bold leading-tight tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 mb-2">
+                    Unlock Your <br/>AI Coach
+                </h1>
+<p class="text-white/60 text-sm leading-relaxed max-w-[280px]">
+                    Smart fitness &amp; diet tracking designed for the modern student lifestyle.
+                </p>
+</div>
+<!-- Form Container -->
+<div class="flex flex-col gap-5">
+<!-- Name Input -->
+<div class="space-y-1.5">
+<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider">Full Name</label>
+<div class="relative">
+<input class="w-full h-14 bg-input-bg border-transparent focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" placeholder="e.g. Rahul Sharma" type="text"/>
+<span class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</span>
+</div>
+</div>
+<!-- Email Input -->
+<div class="space-y-1.5">
+<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider">Email or Phone</label>
+<div class="relative group">
+<input class="w-full h-14 bg-input-bg border-transparent focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" placeholder="name@university.edu" type="email" value="priya.design@"/>
+<!-- Field Level Validation Example: Checking/Typing -->
+<span class="absolute right-5 top-1/2 -translate-y-1/2 text-primary animate-pulse">
+<span class="material-symbols-outlined text-[20px]">sync</span>
+</span>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-1.5">
+<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider">Password</label>
+<div class="relative">
+<input class="w-full h-14 bg-input-bg border-2 border-primary/50 focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" type="password" value="StrongPass123"/>
+<button class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+<!-- Password Strength Meter -->
+<div class="flex items-center gap-2 px-4 pt-1">
+<div class="h-1 flex-1 rounded-full bg-green-500"></div>
+<div class="h-1 flex-1 rounded-full bg-green-500"></div>
+<div class="h-1 flex-1 rounded-full bg-green-500"></div>
+<div class="h-1 flex-1 rounded-full bg-gray-700"></div>
+<span class="text-[10px] font-medium text-green-500 ml-1">Strong</span>
+</div>
+</div>
+<!-- Confirm Password Input -->
+<div class="space-y-1.5">
+<label class="text-xs font-medium text-gray-400 pl-4 uppercase tracking-wider">Confirm Password</label>
+<div class="relative">
+<input class="w-full h-14 bg-input-bg border-transparent focus:border-primary focus:ring-0 rounded-full px-6 text-white placeholder-gray-500 transition-all shadow-inner" placeholder="Re-enter password" type="password"/>
+<span class="absolute right-5 top-1/2 -translate-y-1/2 text-green-500">
+<!-- Validation Success State -->
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</span>
+</div>
+</div>
+</div>
+<div class="mt-8 mb-4">
+<button class="w-full h-14 bg-primary hover:bg-primary/90 active:scale-[0.98] transition-all rounded-full text-white font-semibold text-base shadow-lg shadow-primary/25 flex items-center justify-center gap-2">
+                    Create Account
+                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+<!-- Login Instead -->
+<div class="text-center mb-6">
+<p class="text-sm text-gray-400">
+                    Already have an account? 
+                    <a class="text-white font-semibold hover:underline decoration-primary underline-offset-4" href="#">Login Instead</a>
+</p>
+</div>
+<!-- Divider -->
+<div class="relative flex items-center py-2 mb-6">
+<div class="flex-grow border-t border-gray-700"></div>
+<span class="flex-shrink-0 mx-4 text-gray-500 text-xs font-medium uppercase">Or continue with</span>
+<div class="flex-grow border-t border-gray-700"></div>
+</div>
+<!-- Social Auth -->
+<button class="w-full h-14 bg-white hover:bg-gray-100 active:scale-[0.98] transition-all rounded-full text-gray-900 font-medium text-base flex items-center justify-center gap-3">
+<svg class="w-5 h-5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                Google
+            </button>
+<!-- Bottom Spacer -->
+<div class="h-6"></div>
+</div>
+</div>
+</body></html>

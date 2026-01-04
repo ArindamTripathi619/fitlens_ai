@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Height &amp; Weight Input</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#6938fa",
+                "background-light": "#f6f5f8",
+                "background-dark": "#140f23",
+                "surface-dark": "#1e192b", // Slightly lighter than background-dark for cards
+                "surface-element": "#2c273a", // For input backgrounds
+              },
+              fontFamily: {
+                "display": ["Inter", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+<style>
+        /* Custom scrollbar hiding for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Gradient masks for fading effects on rulers */
+        .mask-vertical {
+            mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+        }
+        .mask-horizontal {
+            mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-white min-h-screen flex flex-col overflow-hidden relative">
+<!-- Top Navigation / Progress -->
+<div class="w-full pt-6 pb-2 px-6 flex flex-col items-center z-10">
+<!-- Progress Indicators -->
+<div class="flex w-full flex-row items-center justify-center gap-2 mb-4">
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-8 rounded-full bg-gray-300 dark:bg-[#413a55]"></div>
+<div class="h-1.5 w-8 rounded-full bg-gray-300 dark:bg-[#413a55]"></div>
+<div class="h-1.5 w-8 rounded-full bg-gray-300 dark:bg-[#413a55]"></div>
+</div>
+<!-- Header Text -->
+<h1 class="text-3xl font-bold tracking-tight text-center mb-1">Let's get to know you</h1>
+<p class="text-gray-500 dark:text-gray-400 text-sm font-medium text-center">To calculate your BMI and daily calorie needs.</p>
+</div>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col gap-5 px-5 py-4 overflow-y-auto no-scrollbar w-full max-w-md mx-auto">
+<!-- Height Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl p-5 shadow-sm relative overflow-hidden group">
+<!-- Subtle background decoration -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">height</span>
+<h2 class="text-lg font-bold">Height</h2>
+</div>
+<!-- Segmented Button: CM/FT -->
+<div class="flex h-8 items-center justify-center rounded-full bg-gray-100 dark:bg-surface-element p-1">
+<label class="cursor-pointer h-full px-3 flex items-center justify-center rounded-full has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm transition-all">
+<span class="text-xs font-bold text-gray-500 dark:text-gray-400 has-[:checked]:text-primary dark:has-[:checked]:text-white">CM</span>
+<input checked="" class="hidden" name="height-unit" type="radio" value="CM"/>
+</label>
+<label class="cursor-pointer h-full px-3 flex items-center justify-center rounded-full has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm transition-all">
+<span class="text-xs font-bold text-gray-500 dark:text-gray-400 has-[:checked]:text-primary dark:has-[:checked]:text-white">FT</span>
+<input class="hidden" name="height-unit" type="radio" value="FT"/>
+</label>
+</div>
+</div>
+<div class="flex flex-row items-center justify-between h-48">
+<!-- Large Value Display & Animation Placeholder -->
+<div class="flex-1 flex flex-col items-center justify-center relative">
+<!-- Abstract Lottie Placeholder -->
+<div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+<img alt="Abstract vertical stretching shape representing height growth" class="h-full object-cover opacity-50 blur-sm" data-alt="Abstract vertical stretching shape representing height growth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHPRTN6M8J7mjk-8zcPn0e-dAaWPhy65oVg0V9dpnLGH52KT0fC93wZoyCf1fK7kU9PfnB4J6VIVNUyR7JdZvQPWxinJm4KuHOz0fdMv0etA8XwI7QTAPY8Nd8egNsqDCuz8vMvl39nH9npfE9E6eUmRMDg4huKUe0gtP1l5pAuCX6CrTk89EWXPEBPINd6Sp9lQcOY20q2MrgGpSVDD1NB6tDXjAXY0ej43qKn5wzuKMRhhDvc3E2a9xGq_VU0UYGK-5W3MvpNTk"/>
+</div>
+<div class="text-5xl font-black text-slate-900 dark:text-white z-10 tracking-tighter">
+                        175
+                        <span class="text-lg font-medium text-gray-400 dark:text-gray-500 ml-1 absolute top-2">cm</span>
+</div>
+</div>
+<!-- Vertical Ruler Visual -->
+<div class="w-16 h-full relative bg-gray-50 dark:bg-[#1a1625] rounded-lg ml-4 flex items-center justify-center overflow-hidden">
+<!-- Center Marker -->
+<div class="absolute w-full h-0.5 bg-primary z-20 left-0 shadow-[0_0_10px_rgba(105,56,250,0.5)]"></div>
+<!-- Scrollable Area (Visual Only) -->
+<div class="flex flex-col items-end gap-3 mask-vertical py-20 w-full pr-0 opacity-60">
+<!-- Generating ruler ticks -->
+<div class="flex items-center gap-2 w-full justify-end pr-3"><span class="text-[10px] text-gray-500">180</span><div class="w-4 h-0.5 bg-gray-400 dark:bg-gray-600 rounded-full"></div></div>
+<div class="w-2 h-0.5 bg-gray-300 dark:bg-gray-700 rounded-full mr-3"></div>
+<div class="w-2 h-0.5 bg-gray-300 dark:bg-gray-700 rounded-full mr-3"></div>
+<div class="w-2 h-0.5 bg-gray-300 dark:bg-gray-700 rounded-full mr-3"></div>
+<div class="w-2 h-0.5 bg-gray-300 dark:bg-gray-700 rounded-full mr-3"></div>
+<div class="flex items-center gap-2 w-full justify-end pr-3"><span class="text-sm font-bold text-primary dark:text-white">175</span><div class="w-6 h-0.5 bg-primary rounded-full"></div></div>
+<div class="w-2 h-0.5 bg-gray-300 dark:bg-gray-700 rounded-full mr-3"></div>
+<div class="w-2 h-0.5 bg-gray-300 dark:bg-gray-700 rounded-full mr-3"></div>
+<div class="w-2 h-0.5 bg-gray-300 dark:bg-gray-700 rounded-full mr-3"></div>
+<div class="w-2 h-0.5 bg-gray-300 dark:bg-gray-700 rounded-full mr-3"></div>
+<div class="flex items-center gap-2 w-full justify-end pr-3"><span class="text-[10px] text-gray-500">170</span><div class="w-4 h-0.5 bg-gray-400 dark:bg-gray-600 rounded-full"></div></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Weight Card -->
+<div class="bg-white dark:bg-surface-dark rounded-xl p-5 shadow-sm relative overflow-hidden">
+<!-- Subtle background decoration -->
+<div class="absolute bottom-0 left-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -ml-10 -mb-10 pointer-events-none"></div>
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">monitor_weight</span>
+<h2 class="text-lg font-bold">Weight</h2>
+</div>
+<!-- Segmented Button: KG/LB -->
+<div class="flex h-8 items-center justify-center rounded-full bg-gray-100 dark:bg-surface-element p-1">
+<label class="cursor-pointer h-full px-3 flex items-center justify-center rounded-full has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm transition-all">
+<span class="text-xs font-bold text-gray-500 dark:text-gray-400 has-[:checked]:text-primary dark:has-[:checked]:text-white">KG</span>
+<input checked="" class="hidden" name="weight-unit" type="radio" value="KG"/>
+</label>
+<label class="cursor-pointer h-full px-3 flex items-center justify-center rounded-full has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:shadow-sm transition-all">
+<span class="text-xs font-bold text-gray-500 dark:text-gray-400 has-[:checked]:text-primary dark:has-[:checked]:text-white">LB</span>
+<input class="hidden" name="weight-unit" type="radio" value="LB"/>
+</label>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center">
+<div class="text-5xl font-black text-slate-900 dark:text-white mb-6 relative">
+                    70.5
+                    <span class="text-lg font-medium text-gray-400 dark:text-gray-500 absolute -right-6 top-6">kg</span>
+</div>
+<!-- Horizontal Picker Visual -->
+<div class="w-full h-16 relative flex items-center justify-center">
+<!-- Center Marker -->
+<div class="absolute h-10 w-1 rounded-full bg-primary z-20 top-1/2 -translate-y-1/2 shadow-[0_0_10px_rgba(105,56,250,0.5)]"></div>
+<div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-16 bg-primary/10 rounded-lg z-10 border border-primary/20"></div>
+<!-- Ticks container -->
+<div class="flex items-end justify-center gap-3 mask-horizontal w-full overflow-hidden h-full pb-2">
+<!-- Ticks -->
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-6 w-0.5 bg-gray-400 dark:bg-gray-600 rounded-full"></div> <!-- 69 -->
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-8 w-1 bg-primary dark:bg-white rounded-full mx-1"></div> <!-- 70 (Center) -->
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-6 w-0.5 bg-gray-400 dark:bg-gray-600 rounded-full"></div> <!-- 71 -->
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+<div class="h-4 w-0.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer for scrolling -->
+<div class="h-20"></div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light dark:via-background-dark to-transparent z-30">
+<button class="w-full h-14 bg-primary hover:bg-primary/90 active:scale-[0.98] transition-all rounded-full flex items-center justify-between px-6 shadow-lg shadow-primary/30 group">
+<span class="text-white font-bold text-lg">Next Step</span>
+<div class="bg-white/20 rounded-full p-1 group-hover:bg-white/30 transition-colors">
+<span class="material-symbols-outlined text-white">arrow_forward</span>
+</div>
+</button>
+</div>
+</body></html>

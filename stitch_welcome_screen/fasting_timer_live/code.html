@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fasting Timer Live</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25c0f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-dark": "#1a2c32",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    boxShadow: {
+                        "neon": "0 0 10px rgba(37, 192, 244, 0.5), 0 0 20px rgba(37, 192, 244, 0.3)",
+                        "inner-glow": "inset 0 0 20px rgba(37, 192, 244, 0.1)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .circle-progress {
+            transition: stroke-dashoffset 1s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display selection:bg-primary/30">
+<!-- Header -->
+<header class="flex items-center justify-between p-6 pb-2">
+<button class="text-white/80 hover:text-white transition-colors rounded-full p-2 hover:bg-white/5">
+<span class="material-symbols-outlined !text-[28px]">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<h1 class="text-white text-lg font-bold tracking-tight">Fasting Timer</h1>
+<span class="text-xs font-medium text-primary tracking-widest uppercase">Live Session</span>
+</div>
+<button class="text-white/80 hover:text-white transition-colors rounded-full p-2 hover:bg-white/5">
+<span class="material-symbols-outlined !text-[28px]">more_vert</span>
+</button>
+</header>
+<!-- Main Content Scroll Area -->
+<main class="flex-1 overflow-y-auto overflow-x-hidden pb-32">
+<!-- Timer Section -->
+<div class="flex flex-col items-center justify-center pt-8 pb-10 relative">
+<!-- Decorative background blur -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
+<!-- Status Pill -->
+<div class="mb-8 px-4 py-1.5 rounded-full bg-surface-dark border border-white/10 flex items-center gap-2 shadow-lg">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-white text-sm font-medium">16:8 Protocol</span>
+</div>
+<!-- Circular Timer -->
+<div class="relative w-72 h-72 flex items-center justify-center">
+<!-- SVG Circle -->
+<svg class="w-full h-full drop-shadow-neon" viewbox="0 0 100 100">
+<!-- Background Circle -->
+<circle cx="50" cy="50" fill="transparent" r="45" stroke="#1a2c32" stroke-width="6"></circle>
+<!-- Progress Circle -->
+<circle class="circle-progress" cx="50" cy="50" fill="transparent" r="45" stroke="#25c0f4" stroke-dasharray="283" stroke-dashoffset="100" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<!-- Timer Text Content -->
+<div class="absolute inset-0 flex flex-col items-center justify-center z-10">
+<span class="text-primary/80 text-sm font-medium uppercase tracking-widest mb-1">Remaining</span>
+<h2 class="text-white text-5xl font-bold tracking-tight font-display tabular-nums">14:32:01</h2>
+<div class="mt-2 flex items-center gap-1.5 text-white/50 text-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>Elapsed: 01:27:59</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Metabolic Dashboard -->
+<div class="px-6 mb-8">
+<div class="grid grid-cols-2 gap-4">
+<!-- Fat Burn Card -->
+<div class="bg-surface-dark rounded-2xl p-5 border border-white/5 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-orange-500/10 rounded-full blur-xl group-hover:bg-orange-500/20 transition-all"></div>
+<div class="flex items-start justify-between mb-3">
+<div class="p-2 bg-orange-500/10 rounded-lg text-orange-400">
+<span class="material-symbols-outlined">local_fire_department</span>
+</div>
+</div>
+<div>
+<p class="text-white/60 text-sm font-medium mb-1">Est. Fat Burn</p>
+<p class="text-white text-2xl font-bold">12<span class="text-sm font-normal text-white/50 ml-0.5">g</span></p>
+</div>
+</div>
+<!-- Ketosis Card -->
+<div class="bg-surface-dark rounded-2xl p-5 border border-white/5 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-16 h-16 bg-primary/10 rounded-full blur-xl group-hover:bg-primary/20 transition-all"></div>
+<div class="flex items-start justify-between mb-3">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+</div>
+<div>
+<p class="text-white/60 text-sm font-medium mb-1">Ketosis Level</p>
+<p class="text-white text-2xl font-bold">Low</p>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Timeline Section -->
+<div class="px-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-white text-lg font-bold">Body Status</h3>
+<span class="text-primary text-xs font-bold uppercase tracking-wider bg-primary/10 px-2 py-1 rounded">Live Insights</span>
+</div>
+<div class="bg-surface-dark rounded-3xl p-6 border border-white/5">
+<div class="grid grid-cols-[32px_1fr] gap-x-4">
+<!-- Item 1: Past -->
+<div class="flex flex-col items-center gap-2 pt-1">
+<div class="text-primary" data-alt="Completed Icon">
+<span class="material-symbols-outlined text-[24px]">check_circle</span>
+</div>
+<div class="w-[2px] bg-primary/20 h-full min-h-[40px] rounded-full"></div>
+</div>
+<div class="flex flex-col pb-6 opacity-50">
+<p class="text-white text-base font-bold leading-tight">Blood Sugar Stabilized</p>
+<p class="text-white/50 text-sm mt-1">Insulin levels dropped</p>
+</div>
+<!-- Item 2: Current (Active) -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-[2px] bg-primary/20 h-2 rounded-full"></div>
+<div class="text-orange-400 relative" data-alt="Active Fire Icon">
+<div class="absolute inset-0 bg-orange-400 blur-lg opacity-40"></div>
+<span class="material-symbols-outlined text-[24px] relative z-10">local_fire_department</span>
+</div>
+<div class="w-[2px] bg-white/10 h-full min-h-[40px] rounded-full"></div>
+</div>
+<div class="flex flex-col pb-6 pt-1">
+<p class="text-white text-lg font-bold leading-tight flex items-center gap-2">
+                            Fat Burning Zone
+                            <span class="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
+</p>
+<p class="text-primary text-sm mt-1 font-medium">Happening now</p>
+<p class="text-white/60 text-sm mt-1 leading-relaxed">Your body has started using stored fat for energy.</p>
+</div>
+<!-- Item 3: Future -->
+<div class="flex flex-col items-center gap-2 pb-1">
+<div class="w-[2px] bg-white/10 h-2 rounded-full"></div>
+<div class="text-white/30" data-alt="Future Icon">
+<span class="material-symbols-outlined text-[24px]">water_drop</span>
+</div>
+</div>
+<div class="flex flex-col pt-1">
+<p class="text-white/60 text-base font-medium leading-tight">Autophagy</p>
+<p class="text-white/40 text-sm mt-1">In 5 hrs 20 mins</p>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Tip (Indian Context) -->
+<div class="mx-6 mt-6 p-4 rounded-xl bg-gradient-to-r from-primary/10 to-transparent border-l-4 border-primary flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">smart_toy</span>
+<div>
+<p class="text-white text-sm font-medium">AI Advisor</p>
+<p class="text-white/70 text-sm mt-1">Preparing to break fast later? Try soaking 5 almonds now. It's gentle on your stomach.</p>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 w-full p-6 bg-gradient-to-t from-background-dark via-background-dark to-transparent z-40">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold text-lg h-14 rounded-2xl shadow-[0_0_20px_rgba(37,192,244,0.4)] transition-transform active:scale-[0.98] flex items-center justify-center gap-2" onclick="document.getElementById('break-fast-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined">restaurant</span>
+            Break Fast
+        </button>
+</div>
+<!-- Confirmation Modal (Hidden by default, simple JS toggle included in inline onclick for demo) -->
+<div class="fixed inset-0 z-50 flex items-end sm:items-center justify-center hidden" id="break-fast-modal">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="document.getElementById('break-fast-modal').classList.add('hidden')"></div>
+<!-- Modal Content -->
+<div class="relative w-full max-w-sm bg-[#1a2c32] rounded-t-3xl sm:rounded-3xl p-6 m-4 border border-white/10 shadow-2xl transform transition-all animate-in slide-in-from-bottom duration-300">
+<div class="w-12 h-1 bg-white/10 rounded-full mx-auto mb-6"></div>
+<div class="text-center mb-6">
+<div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 text-white">
+<span class="material-symbols-outlined text-[32px]">no_food</span>
+</div>
+<h3 class="text-white text-xl font-bold mb-2">End Fasting Session?</h3>
+<p class="text-white/60 text-sm leading-relaxed">You still have 2 hours left to reach your 16-hour goal. Are you sure you want to stop now?</p>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-red-500/10 hover:bg-red-500/20 text-red-400 font-bold py-4 rounded-xl border border-red-500/20 transition-colors">
+                    Yes, Break Fast Now
+                </button>
+<button class="w-full bg-white/5 hover:bg-white/10 text-white font-bold py-4 rounded-xl transition-colors" onclick="document.getElementById('break-fast-modal').classList.add('hidden')">
+                    Continue Fasting
+                </button>
+</div>
+</div>
+</div>
+</body></html>

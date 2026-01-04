@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BMI &amp; BMR Calculator</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25c0f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom range input styling for cross-browser consistency */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #25c0f4;
+            cursor: pointer;
+            margin-top: -10px; 
+            box-shadow: 0 0 0 4px rgba(37, 192, 244, 0.2);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #283539;
+            border-radius: 2px;
+        }
+
+        /* Firefox styles */
+        input[type=range]::-moz-range-thumb {
+            height: 24px;
+            width: 24px;
+            border: none;
+            border-radius: 50%;
+            background: #25c0f4;
+            cursor: pointer;
+            box-shadow: 0 0 0 4px rgba(37, 192, 244, 0.2);
+        }
+        
+        input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #283539;
+            border-radius: 2px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex flex-col antialiased selection:bg-primary selection:text-black overflow-x-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between p-5 pb-2">
+<button class="flex size-10 items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors text-white">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight">BMI &amp; BMR Calculator</h1>
+<button class="flex size-10 items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors text-primary">
+<span class="material-symbols-outlined filled">smart_toy</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col px-5 pt-4 pb-28 gap-8 overflow-y-auto scrollbar-hide">
+<!-- Gender Switcher -->
+<div class="flex justify-center">
+<div class="flex h-12 w-full max-w-sm items-center justify-center rounded-full bg-[#1a262a] p-1 border border-white/5">
+<label class="cursor-pointer relative flex-1 h-full">
+<input checked="" class="peer sr-only" name="gender" type="radio" value="male"/>
+<div class="flex h-full w-full items-center justify-center rounded-full text-slate-400 peer-checked:bg-primary peer-checked:text-black peer-checked:font-bold transition-all duration-300">
+<span class="material-symbols-outlined mr-2 text-[18px]">male</span>
+<span>Male</span>
+</div>
+</label>
+<label class="cursor-pointer relative flex-1 h-full">
+<input class="peer sr-only" name="gender" type="radio" value="female"/>
+<div class="flex h-full w-full items-center justify-center rounded-full text-slate-400 peer-checked:bg-primary peer-checked:text-black peer-checked:font-bold transition-all duration-300">
+<span class="material-symbols-outlined mr-2 text-[18px]">female</span>
+<span>Female</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Sliders Section -->
+<div class="flex flex-col gap-8">
+<!-- Height Slider -->
+<div class="group">
+<div class="flex justify-between items-end mb-4">
+<span class="text-slate-400 text-sm font-medium tracking-wide uppercase">Height</span>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-white">175</span>
+<span class="text-primary text-sm font-medium">cm</span>
+</div>
+</div>
+<div class="relative h-6 flex items-center">
+<!-- Custom Fake Slider Visual -->
+<div class="absolute w-full h-1 bg-[#283539] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[65%]"></div>
+</div>
+<!-- Thumb -->
+<div class="absolute left-[65%] -translate-x-1/2 w-6 h-6 rounded-full bg-primary border-4 border-background-dark shadow-[0_0_15px_rgba(37,192,244,0.5)] cursor-grab active:cursor-grabbing"></div>
+</div>
+</div>
+<!-- Weight Slider -->
+<div class="group">
+<div class="flex justify-between items-end mb-4">
+<span class="text-slate-400 text-sm font-medium tracking-wide uppercase">Weight</span>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-white">70</span>
+<span class="text-primary text-sm font-medium">kg</span>
+</div>
+</div>
+<div class="relative h-6 flex items-center">
+<div class="absolute w-full h-1 bg-[#283539] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[45%]"></div>
+</div>
+<div class="absolute left-[45%] -translate-x-1/2 w-6 h-6 rounded-full bg-primary border-4 border-background-dark shadow-[0_0_15px_rgba(37,192,244,0.5)] cursor-grab active:cursor-grabbing"></div>
+</div>
+</div>
+<!-- Age Slider -->
+<div class="group">
+<div class="flex justify-between items-end mb-4">
+<span class="text-slate-400 text-sm font-medium tracking-wide uppercase">Age</span>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold text-white">24</span>
+<span class="text-primary text-sm font-medium">yrs</span>
+</div>
+</div>
+<div class="relative h-6 flex items-center">
+<div class="absolute w-full h-1 bg-[#283539] rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[24%]"></div>
+</div>
+<div class="absolute left-[24%] -translate-x-1/2 w-6 h-6 rounded-full bg-primary border-4 border-background-dark shadow-[0_0_15px_rgba(37,192,244,0.5)] cursor-grab active:cursor-grabbing"></div>
+</div>
+</div>
+</div>
+<!-- Result Card -->
+<div class="relative mt-2">
+<!-- Glow Effect -->
+<div class="absolute -inset-[1px] bg-gradient-to-r from-primary via-[#a855f7] to-primary rounded-3xl opacity-75 blur-sm"></div>
+<div class="relative bg-[#152328] rounded-3xl p-6 border border-white/5 overflow-hidden">
+<!-- Background decoration -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -mr-10 -mt-10"></div>
+<div class="flex justify-between items-start relative z-10">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-slate-400 text-xs font-bold uppercase tracking-widest">Your BMI</span>
+<span class="material-symbols-outlined text-slate-500 text-[16px] cursor-help">info</span>
+</div>
+<h2 class="text-6xl font-bold text-white tracking-tighter drop-shadow-lg">22.8</h2>
+<p class="text-primary font-medium mt-1 inline-block px-2 py-0.5 rounded-md bg-primary/10 border border-primary/20 text-sm">Normal Weight</p>
+</div>
+<div class="text-right">
+<div class="flex items-center justify-end gap-1 mb-1">
+<span class="text-slate-400 text-xs font-bold uppercase tracking-widest">BMR</span>
+</div>
+<div class="text-2xl font-bold text-white">1,680</div>
+<div class="text-xs text-slate-400">kcal / day</div>
+</div>
+</div>
+<!-- BMI Gauge Visualization -->
+<div class="mt-8 relative z-10">
+<!-- Scale Labels -->
+<div class="flex justify-between text-[10px] text-slate-500 mb-2 font-medium uppercase tracking-wider">
+<span>Under</span>
+<span>Normal</span>
+<span>Over</span>
+<span>Obese</span>
+</div>
+<!-- Gauge Bar -->
+<div class="h-3 w-full rounded-full flex overflow-hidden relative bg-[#111618]">
+<div class="w-[18.5%] bg-blue-400/80"></div>
+<div class="w-[25%] bg-green-400"></div> <!-- Normal Range -->
+<div class="w-[15%] bg-yellow-400/80"></div>
+<div class="flex-1 bg-red-400/80"></div>
+<!-- Pointer -->
+<div class="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] z-20" style="left: 35%;"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Bar -->
+<div class="fixed bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-[#101e22] via-[#101e22]/95 to-transparent z-50">
+<button class="w-full group relative flex items-center justify-center gap-3 overflow-hidden rounded-full bg-primary p-4 transition-all hover:shadow-[0_0_20px_rgba(37,192,244,0.4)] active:scale-[0.98]">
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+<span class="material-symbols-outlined text-black font-medium">restaurant_menu</span>
+<span class="text-black text-base font-bold leading-none tracking-wide">Generate AI Diet Plan</span>
+</button>
+<p class="text-center text-[10px] text-slate-500 mt-3 font-medium">
+            Includes Indian-friendly food recommendations
+        </p>
+</div>
+</body></html>

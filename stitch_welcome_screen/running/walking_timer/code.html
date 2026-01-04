@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Running Timer</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25c0f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-dark": "#1b282c", // Slightly lighter than bg-dark
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "1.5rem", "xl": "2rem", "2xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Pulse animation for the map marker */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.33); opacity: 1; }
+            80%, 100% { opacity: 0; }
+        }
+        @keyframes pulse-dot {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1); }
+            100% { transform: scale(0.8); }
+        }
+        .pulse-ring {
+            position: absolute;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: #25c0f4;
+            opacity: 0.6;
+            animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        .pulse-dot {
+            position: relative;
+            background-color: #25c0f4;
+            border-radius: 50%;
+            height: 16px;
+            width: 16px;
+            z-index: 2;
+            border: 2px solid white;
+            box-shadow: 0 0 10px rgba(37, 192, 244, 0.6);
+            animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Overlay -->
+<div class="absolute top-0 left-0 right-0 z-20 pt-12 px-6 flex items-center justify-between pointer-events-none">
+<button class="pointer-events-auto flex items-center justify-center size-10 rounded-full bg-surface-dark/80 backdrop-blur-md shadow-lg text-white hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<div class="pointer-events-auto flex items-center gap-2 px-4 py-2 rounded-full bg-surface-dark/80 backdrop-blur-md shadow-lg">
+<div class="size-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-sm font-bold text-white tracking-wide uppercase">GPS Active</span>
+<span class="material-symbols-outlined text-sm text-green-500">signal_cellular_alt</span>
+</div>
+<button class="pointer-events-auto flex items-center justify-center size-10 rounded-full bg-surface-dark/80 backdrop-blur-md shadow-lg text-white hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</button>
+</div>
+<!-- Map Section (Top 40%) -->
+<div class="relative h-[45vh] w-full shrink-0">
+<!-- Map Background Image -->
+<div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80" data-alt="Dark abstract map view of city streets at night" data-location="Dark City Map" style="background-image: url('https://placeholder.pics/svg/300'); filter: grayscale(100%) brightness(0.7) contrast(1.2);">
+</div>
+<!-- Map Gradient Overlay for fading into bottom sheet -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/20 to-background-dark"></div>
+<!-- Simulated Route Path (SVG) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-10" style="filter: drop-shadow(0 0 8px rgba(37, 192, 244, 0.5));">
+<path d="M 50 400 Q 120 350 150 250 T 280 150 T 350 100" fill="none" stroke="#25c0f4" stroke-dasharray="10 5" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<!-- Current Location Indicator -->
+<div class="absolute top-[28%] left-[70%] transform -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center">
+<div class="pulse-ring"></div>
+<div class="pulse-dot"></div>
+</div>
+<!-- Map Controls -->
+<div class="absolute bottom-16 right-4 flex flex-col gap-3 z-10">
+<button class="flex size-10 items-center justify-center rounded-full bg-surface-dark text-white shadow-lg border border-white/5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-xl">my_location</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full bg-surface-dark text-white shadow-lg border border-white/5 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-xl">layers</span>
+</button>
+</div>
+</div>
+<!-- Stats Dashboard (Bottom 60%) -->
+<div class="relative flex-1 bg-background-dark rounded-t-2xl shadow-[0_-8px_30px_rgba(0,0,0,0.5)] -mt-8 z-20 overflow-y-auto no-scrollbar flex flex-col items-center pt-2">
+<!-- Drag Handle -->
+<div class="w-12 h-1.5 bg-white/10 rounded-full mt-3 mb-6"></div>
+<!-- Main Timer -->
+<div class="flex flex-col items-center mb-8 w-full px-6">
+<h2 class="text-white/60 text-sm font-medium uppercase tracking-widest mb-1">Duration</h2>
+<div class="relative">
+<h1 class="text-6xl font-bold text-white tabular-nums tracking-tighter drop-shadow-[0_0_15px_rgba(37,192,244,0.3)]">
+                    00:15:<span class="text-primary">32</span>
+</h1>
+</div>
+<!-- Mini Music Player -->
+<div class="mt-6 flex items-center gap-3 bg-surface-dark/80 px-4 py-2 rounded-full border border-white/5 w-full max-w-[320px]">
+<div class="size-8 rounded-full bg-white/10 flex items-center justify-center overflow-hidden shrink-0">
+<img alt="Album Art Abstract" class="w-full h-full object-cover" data-alt="Abstract colorful album art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANboJDBiavBlsYEdttrwpsEWf3gRu063VXhFP1Jtguz2eJlDwmC7-BmqLnHIZyYjBNmnOwhAUkB6nI2gaSuI-9umipDd5Ey8gLmOkmgGXhI9N2CsJtGEN1CNblMztSjS5Uqy78thenHCRBhWOyNiwk5uTdnL-obgPECpjSL0_rjJEm7gE8Dt5xV_oAxsSAsqEfB_IrW0DUZcmf38dzBy8p0HpYvOLKF8WbugoK-Exh3AXnpdXnIVWFrKqF9pCuZ9V0yX0o4pvc_xw"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-xs font-bold text-white truncate">Blinding Lights</p>
+<p class="text-[10px] text-white/60 truncate">The Weeknd</p>
+</div>
+<div class="flex gap-2 text-white">
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">skip_previous</span></button>
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">pause</span></button>
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">skip_next</span></button>
+</div>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="w-full px-6 grid grid-cols-2 gap-4 mb-8">
+<!-- Steps Card -->
+<div class="bg-surface-dark p-5 rounded-2xl flex flex-col justify-between h-[140px] border border-white/5 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-primary">footprint</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<div class="p-1.5 rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-lg">directions_walk</span>
+</div>
+<span class="text-white/60 text-sm font-medium">Steps</span>
+</div>
+<div>
+<span class="text-3xl font-bold text-white tracking-tight">1,240</span>
+<div class="w-full bg-white/10 h-1 mt-3 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[45%] rounded-full shadow-[0_0_10px_rgba(37,192,244,0.8)]"></div>
+</div>
+</div>
+</div>
+<!-- Calories Card -->
+<div class="bg-surface-dark p-5 rounded-2xl flex flex-col justify-between h-[140px] border border-white/5 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-orange-500">local_fire_department</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<div class="p-1.5 rounded-lg bg-orange-500/20 text-orange-400">
+<span class="material-symbols-outlined text-lg">local_fire_department</span>
+</div>
+<span class="text-white/60 text-sm font-medium">Burn</span>
+</div>
+<div>
+<span class="text-3xl font-bold text-white tracking-tight">125</span>
+<span class="text-sm text-white/40 ml-1">kcal</span>
+<div class="w-full bg-white/10 h-1 mt-3 rounded-full overflow-hidden">
+<div class="bg-orange-500 h-full w-[30%] rounded-full shadow-[0_0_10px_rgba(249,115,22,0.8)]"></div>
+</div>
+</div>
+</div>
+<!-- Pace Meter (Wide) -->
+<div class="col-span-2 bg-surface-dark p-5 rounded-2xl flex items-center justify-between border border-white/5 relative overflow-hidden">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<div class="p-1.5 rounded-lg bg-purple-500/20 text-purple-400">
+<span class="material-symbols-outlined text-lg">speed</span>
+</div>
+<span class="text-white/60 text-sm font-medium">Average Pace</span>
+</div>
+<div class="mt-1">
+<span class="text-3xl font-bold text-white tracking-tight">5'30"</span>
+<span class="text-sm text-white/40 ml-1">/km</span>
+</div>
+<p class="text-xs text-green-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                        On target (5'00")
+                    </p>
+</div>
+<!-- Radial Gauge Representation -->
+<div class="relative size-20 flex items-center justify-center">
+<svg class="size-full -rotate-90" viewbox="0 0 100 100">
+<!-- Background circle -->
+<circle cx="50" cy="50" fill="none" r="40" stroke="rgba(255,255,255,0.1)" stroke-width="8"></circle>
+<!-- Progress circle -->
+<circle class="drop-shadow-[0_0_4px_rgba(37,192,244,0.5)]" cx="50" cy="50" fill="none" r="40" stroke="#25c0f4" stroke-dasharray="251.2" stroke-dashoffset="60" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-white font-bold text-sm">76%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Controls Footer -->
+<div class="w-full px-8 pb-8 mt-auto flex items-center justify-center gap-8">
+<button class="flex flex-col items-center gap-2 group">
+<div class="size-14 rounded-full bg-surface-dark border border-white/10 flex items-center justify-center text-white hover:bg-white/10 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl">lock</span>
+</div>
+<span class="text-xs text-white/40 font-medium group-hover:text-white transition-colors">Lock</span>
+</button>
+<!-- Main Pause Button -->
+<button class="relative group active:scale-95 transition-transform">
+<div class="absolute inset-0 bg-primary/30 rounded-full blur-xl group-hover:bg-primary/50 transition-colors"></div>
+<div class="size-24 rounded-full bg-primary flex items-center justify-center shadow-[0_0_20px_rgba(37,192,244,0.4)] relative z-10 border-4 border-background-dark">
+<span class="material-symbols-outlined text-4xl text-background-dark font-bold fill-current">pause</span>
+</div>
+</button>
+<button class="flex flex-col items-center gap-2 group">
+<div class="size-14 rounded-full bg-red-500/20 border border-red-500/20 flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl">stop</span>
+</div>
+<span class="text-xs text-white/40 font-medium group-hover:text-red-500 transition-colors">Stop</span>
+</button>
+</div>
+</div>
+</body></html>

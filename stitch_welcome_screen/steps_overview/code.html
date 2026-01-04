@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Steps Overview</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25c0f4",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-dark": "#1a2c32",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(37, 192, 244, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom styles for circular progress if needed */
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col items-center justify-center text-slate-900 dark:text-white overflow-hidden">
+<!-- Phone Container -->
+<div class="relative flex h-full min-h-screen w-full max-w-md flex-col bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden mx-auto">
+<!-- Top App Bar -->
+<div class="flex items-center px-6 pt-12 pb-4 justify-between z-10">
+<button class="flex size-10 items-center justify-center rounded-full bg-surface-light dark:bg-surface-dark text-slate-900 dark:text-white shadow-sm transition active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold tracking-tight">Steps Overview</h2>
+<button class="flex size-10 items-center justify-center rounded-full bg-surface-light dark:bg-surface-dark text-slate-900 dark:text-white shadow-sm transition active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto pb-24 no-scrollbar">
+<!-- Hero Progress Section -->
+<div class="relative flex flex-col items-center justify-center pt-8 pb-10">
+<!-- Circular Progress -->
+<div class="relative size-64 md:size-72 flex items-center justify-center">
+<!-- Background Circle -->
+<svg class="size-full transform -rotate-90" viewbox="0 0 100 100">
+<circle class="text-slate-200 dark:text-surface-dark" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="8"></circle>
+<!-- Progress Circle (72%) -->
+<circle class="drop-shadow-[0_0_10px_rgba(37,192,244,0.5)]" cx="50" cy="50" fill="none" r="45" stroke="#25c0f4" stroke-dasharray="283" stroke-dashoffset="79" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<!-- Center Content -->
+<div class="absolute flex flex-col items-center justify-center inset-0">
+<span class="material-symbols-outlined text-primary mb-2 text-4xl">directions_run</span>
+<h1 class="text-5xl font-bold tracking-tighter text-slate-900 dark:text-white mb-1">7,243</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">/ 10,000 steps</p>
+</div>
+<!-- Floating Badge -->
+<div class="absolute -bottom-4 bg-surface-light dark:bg-surface-dark py-2 px-4 rounded-full shadow-lg border border-slate-100 dark:border-slate-800 flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500 text-lg">trending_up</span>
+<span class="text-xs font-bold text-slate-900 dark:text-white">Top 20% today</span>
+</div>
+</div>
+</div>
+<!-- AI Insight Pill -->
+<div class="px-6 mb-8">
+<div class="bg-gradient-to-r from-primary/10 to-transparent p-[1px] rounded-2xl">
+<div class="bg-surface-light dark:bg-surface-dark/60 backdrop-blur-md rounded-2xl p-4 flex items-start gap-3 border border-slate-100 dark:border-slate-800">
+<div class="bg-primary/20 p-2 rounded-full shrink-0">
+<span class="material-symbols-outlined text-primary text-xl">smart_toy</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary mb-1 uppercase tracking-wider">AI Insight</p>
+<p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Great pace! Walking on this 2% incline is burning 15% more calories. That's roughly equivalent to half a samosa! 🥟
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-4 px-6 mb-8">
+<!-- Inclination Card -->
+<div class="col-span-2 bg-surface-light dark:bg-surface-dark rounded-3xl p-5 border border-slate-100 dark:border-slate-800 flex items-center justify-between shadow-sm">
+<div class="flex flex-col gap-1">
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Inclination</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">2%</span>
+<span class="text-xs font-bold text-primary px-2 py-1 bg-primary/10 rounded-full">Hill</span>
+</div>
+</div>
+<div class="h-12 w-24 bg-slate-100 dark:bg-slate-800 rounded-xl relative overflow-hidden">
+<!-- Abstract incline visualization -->
+<div class="absolute bottom-0 left-0 w-full h-full bg-gradient-to-tr from-primary/20 to-transparent"></div>
+<svg class="absolute bottom-0 left-0 w-full h-full text-primary" preserveaspectratio="none" viewbox="0 0 100 50">
+<path d="M0 50 L100 20 L100 50 Z" fill="currentColor" fill-opacity="0.3"></path>
+<path d="M0 50 L100 20" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Calories Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-3xl p-5 border border-slate-100 dark:border-slate-800 flex flex-col gap-3 shadow-sm">
+<div class="flex items-center justify-between">
+<div class="p-2 bg-orange-500/10 rounded-full text-orange-500">
+<span class="material-symbols-outlined text-xl">local_fire_department</span>
+</div>
+</div>
+<div>
+<span class="text-2xl font-bold text-slate-900 dark:text-white block">340</span>
+<span class="text-slate-500 dark:text-slate-400 text-xs font-medium">kcal burned</span>
+</div>
+</div>
+<!-- Distance Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-3xl p-5 border border-slate-100 dark:border-slate-800 flex flex-col gap-3 shadow-sm">
+<div class="flex items-center justify-between">
+<div class="p-2 bg-purple-500/10 rounded-full text-purple-500">
+<span class="material-symbols-outlined text-xl">location_on</span>
+</div>
+</div>
+<div>
+<span class="text-2xl font-bold text-slate-900 dark:text-white block">4.2</span>
+<span class="text-slate-500 dark:text-slate-400 text-xs font-medium">km distance</span>
+</div>
+</div>
+</div>
+<!-- Weekly Graph (Mini) -->
+<div class="px-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-slate-900 dark:text-white font-bold text-base">Activity Trend</h3>
+<button class="text-primary text-xs font-bold">View all</button>
+</div>
+<div class="flex items-end justify-between h-24 gap-2">
+<!-- Day 1 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-200 dark:bg-slate-800 rounded-t-lg h-full relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-slate-300 dark:bg-slate-700 h-[40%] group-hover:bg-primary transition-colors"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-bold uppercase">M</span>
+</div>
+<!-- Day 2 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-200 dark:bg-slate-800 rounded-t-lg h-full relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-slate-300 dark:bg-slate-700 h-[65%] group-hover:bg-primary transition-colors"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-bold uppercase">T</span>
+</div>
+<!-- Day 3 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-200 dark:bg-slate-800 rounded-t-lg h-full relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-slate-300 dark:bg-slate-700 h-[50%] group-hover:bg-primary transition-colors"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-bold uppercase">W</span>
+</div>
+<!-- Day 4 (Today - Active) -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-slate-200 dark:bg-slate-800 rounded-t-lg h-full relative overflow-hidden shadow-glow">
+<div class="absolute bottom-0 w-full bg-primary h-[72%]"></div>
+</div>
+<span class="text-[10px] text-white font-bold uppercase">T</span>
+</div>
+<!-- Day 5 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-200 dark:bg-slate-800 rounded-t-lg h-full relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-slate-300 dark:bg-slate-700 h-[30%] group-hover:bg-primary transition-colors"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-bold uppercase">F</span>
+</div>
+<!-- Day 6 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-200 dark:bg-slate-800 rounded-t-lg h-full relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-slate-300 dark:bg-slate-700 h-[20%] group-hover:bg-primary transition-colors"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-bold uppercase">S</span>
+</div>
+<!-- Day 7 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-slate-200 dark:bg-slate-800 rounded-t-lg h-full relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-slate-300 dark:bg-slate-700 h-[0%] group-hover:bg-primary transition-colors"></div>
+</div>
+<span class="text-[10px] text-slate-400 font-bold uppercase">S</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button Area -->
+<div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light dark:via-background-dark to-transparent z-20">
+<button class="w-full h-14 bg-primary rounded-full flex items-center justify-between px-2 shadow-[0_4px_20px_rgba(37,192,244,0.4)] hover:shadow-[0_6px_25px_rgba(37,192,244,0.6)] active:scale-[0.98] transition-all group">
+<div class="flex items-center justify-center size-10 bg-white/20 rounded-full text-white">
+<span class="material-symbols-outlined">play_arrow</span>
+</div>
+<span class="text-slate-900 font-bold text-lg flex-1 text-center pr-10">Start Outdoor Walk</span>
+</button>
+</div>
+</div>
+</body></html>

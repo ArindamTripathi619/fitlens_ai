@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Get Started CTA - AI Fitness Coach</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#794dff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#140f23",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display antialiased selection:bg-primary/30 text-slate-900 dark:text-white bg-background-light dark:bg-background-dark">
+<!-- Main Container -->
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden">
+<!-- Background Ambient Effects (Glassmorphism/Glow) -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+<!-- Top Right Purple Blob -->
+<div class="absolute -top-[10%] -right-[10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] mix-blend-screen animate-pulse-slow"></div>
+<!-- Bottom Left Blue-ish Blob -->
+<div class="absolute top-[20%] -left-[10%] w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[80px] mix-blend-screen"></div>
+<!-- Bottom Glow -->
+<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-background-dark via-background-dark/80 to-transparent"></div>
+</div>
+<!-- Content Wrapper -->
+<div class="relative z-10 flex flex-col h-full min-h-screen px-6 py-6 pb-8 justify-between">
+<!-- Hero Section -->
+<div class="flex-1 flex flex-col items-center justify-center mt-4">
+<div class="relative w-full max-w-[340px] aspect-square animate-float">
+<!-- Abstract AI/Fitness 3D Illustration -->
+<div class="w-full h-full bg-center bg-contain bg-no-repeat drop-shadow-2xl" data-alt="Abstract 3D rendering of glowing purple liquid shapes representing AI fluidity" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDvUYhIBKoUzYEFPmkBHYppZcbySJgbDwDm_opoKWFkLRDYF2lZdkrgkKx2G-tPfz_lR3O2h_-1LhaEbAzzYpYXbYAhdMAVFolaN3XXn1tjXh2q5R9bXeqtN9xeR4_asFiuu2J3Rd-ReY7MWFjIN2Ny_zYBq-UFiHavC52ueKmrQ09iOdLF020ADhySvWiMJy6YSJV_DNR5bsOCct5EmNQgAQh17GAxBIQ5zPkqsVtT0Ubk4qt4bS_8p8AiEN05BH1yBw75GoLLZN4");'>
+</div>
+</div>
+</div>
+<!-- Bottom Sheet Content -->
+<div class="flex flex-col gap-6 w-full max-w-md mx-auto">
+<!-- Text Group -->
+<div class="text-center space-y-3">
+<h1 class="text-3xl md:text-4xl font-bold tracking-tight leading-tight">
+                        Your Personal <br/>
+<span class="text-primary">AI Coach</span>
+</h1>
+<p class="text-slate-500 dark:text-gray-400 text-base font-medium leading-relaxed px-2">
+                        Track calories, scan meals, and get smart workout plans. Designed for student life.
+                    </p>
+</div>
+<!-- Main Buttons -->
+<div class="flex flex-col gap-3 pt-2">
+<button class="flex w-full cursor-pointer items-center justify-center rounded-full h-14 px-6 bg-primary hover:bg-primary/90 active:scale-95 transition-all duration-200 shadow-lg shadow-primary/25 group">
+<span class="text-white text-lg font-bold tracking-wide">Get Started</span>
+<span class="material-symbols-outlined ml-2 text-white group-hover:translate-x-1 transition-transform text-[20px]">arrow_forward</span>
+</button>
+<button class="flex w-full cursor-pointer items-center justify-center rounded-full h-14 px-6 bg-transparent border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/5 active:scale-95 transition-all duration-200">
+<span class="text-slate-900 dark:text-white text-lg font-semibold tracking-wide">I already have an account</span>
+</button>
+</div>
+<!-- Social Login Section -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4 px-2">
+<div class="h-px bg-slate-200 dark:bg-white/10 flex-1"></div>
+<span class="text-xs text-slate-400 dark:text-gray-500 font-bold uppercase tracking-wider">Or continue with</span>
+<div class="h-px bg-slate-200 dark:bg-white/10 flex-1"></div>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<!-- Apple -->
+<button class="flex items-center justify-center h-14 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors">
+<svg class="w-6 h-6 fill-black dark:fill-white" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.978 1.13-2.338 1.56-3.46.726-.54-.42-.9-1.29-.9-2.074 0-1.12.492-2.25 1.176-3.07.977-1.11 2.337-1.52 3.46-.705.54.41.9 1.28.9 2.043zm-1.87 3.32c.767.92 1.95 1.25 2.766.45-1.196 3.03-.543 5.46.685 8.24 1.22 2.77-.333 4.1-1.374 4.1-1.04 0-1.28-.62-2.4-.62-1.13 0-1.55.6-2.58.6-1.04 0-2.32-1.32-3.46-3.8-1.74-3.79-.49-9.15 3.33-9.15 1.05 0 1.84.5 2.33.5.48 0 1.34-.48 2.06-.48.21 0 .43.02.63.05l.004.01zM11.96 11.8c0 1.65-1.35 3-3 3s-3-1.35-3-3 1.35-3 3-3 3 1.35 3 3z"></path>
+</svg>
+</button>
+<!-- Google -->
+<button class="flex items-center justify-center h-14 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors">
+<svg class="w-6 h-6 fill-black dark:fill-white" viewbox="0 0 24 24">
+<path d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12.5S6.42 23 12.1 23c5.83 0 10.2-4.19 10.2-9.86 0-.46-.05-1.1-.12-1.64h-.83z"></path>
+</svg>
+</button>
+<!-- Meta/Facebook -->
+<button class="flex items-center justify-center h-14 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors">
+<svg class="w-6 h-6 fill-black dark:fill-white" viewbox="0 0 24 24">
+<path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15h-2.4v-3H10v-2.09c0-2.35 1.39-3.65 3.52-3.65 1.02 0 1.89.07 2.14.11v2.48h-1.47c-1.14 0-1.36.54-1.36 1.33V12h2.75l-.36 3H12.9v6.8c4.56-.93 8-4.96 8-9.8z"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Footer / Terms -->
+<div class="text-center pb-2">
+<p class="text-[11px] text-slate-400 dark:text-gray-600">
+                        By continuing, you agree to our 
+                        <a class="text-primary hover:text-primary/80 dark:hover:text-white underline decoration-1 underline-offset-2" href="#">Terms</a> &amp; 
+                        <a class="text-primary hover:text-primary/80 dark:hover:text-white underline decoration-1 underline-offset-2" href="#">Privacy Policy</a>.
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</body></html>
